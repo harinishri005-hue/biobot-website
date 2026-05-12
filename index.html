@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioBot — Smart Solar Composter</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--g1:#2d6a4f;--g2:#40916c;--g3:#74c69d;--g4:#b7e4c7;--earth:#6b4c2a;--sand:#f4e9d8;--sand2:#fdf6ec;--dark:#0f1a0f;--dark2:#1a2e1a;--text:#1a1a1a;--textl:#4a5568;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--sand2);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(15,26,15,0.96);backdrop-filter:blur(12px);border-bottom:1px solid #2d6a4f44;padding:0 5%;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;}
+.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,#2d6a4f,#74c69d);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.logo-text{font-size:18px;font-weight:800;color:#fff;}.logo-text span{color:#74c69d;}
+.nav-links{display:flex;gap:18px;list-style:none;}
+.nav-links a{color:#94a3b8;text-decoration:none;font-size:12px;font-weight:500;transition:color 0.2s;}
+.nav-links a:hover{color:#74c69d;}
+.nav-cta{background:linear-gradient(135deg,#2d6a4f,#40916c);color:#fff;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;text-decoration:none;}
+@media(max-width:768px){.nav-links{display:none;}}
+.hero{min-height:100vh;background:linear-gradient(160deg,#0f1a0f 0%,#1a2e1a 45%,#2d6a4f 100%);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px;padding:100px 8% 60px;overflow:hidden;position:relative;}
+@media(max-width:768px){.hero{grid-template-columns:1fr;padding-top:80px;}}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:#2d6a4f33;border:1px solid #74c69d44;border-radius:20px;padding:5px 12px;font-size:10px;color:#74c69d;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;}
+.hero h1{font-size:clamp(28px,4.5vw,56px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-2px;margin-bottom:16px;}
+.hero h1 span{background:linear-gradient(135deg,#74c69d,#b7e4c7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:14px;color:#94a3b8;margin-bottom:28px;line-height:1.7;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-p{background:linear-gradient(135deg,#2d6a4f,#40916c);color:#fff;padding:12px 24px;border-radius:30px;font-size:13px;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 25px #2d6a4f66;}
+.btn-s{background:transparent;color:#fff;padding:12px 24px;border-radius:30px;font-size:13px;font-weight:700;text-decoration:none;border:1px solid #ffffff33;}
+.hero-stats{display:flex;gap:24px;margin-top:36px;flex-wrap:wrap;}
+.stat-v{font-size:22px;font-weight:900;color:#74c69d;}
+.stat-l{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;}
+.hero-visual{position:relative;display:flex;justify-content:center;z-index:1;}
+.hero-img{width:100%;max-width:380px;border-radius:24px;box-shadow:0 40px 80px #00000077;animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+section{padding:70px 8%;}
+.stag{display:inline-block;background:#2d6a4f22;color:#2d6a4f;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 10px;border-radius:20px;margin-bottom:10px;}
+.stit{font-size:clamp(20px,3vw,36px);font-weight:800;line-height:1.2;letter-spacing:-1px;margin-bottom:10px;}
+.ssub{color:var(--textl);font-size:13px;line-height:1.7;max-width:540px;}
+.tc{text-align:center;}.tc .ssub{margin:0 auto;}
+#about{background:#fff;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;margin-top:45px;}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;}}
+.about-visual{background:linear-gradient(135deg,#0f1a0f,#243324);border-radius:18px;padding:30px;text-align:center;}
+.about-points{display:flex;flex-direction:column;gap:16px;}
+.pt{display:flex;gap:12px;align-items:flex-start;}
+.pt-ic{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.pt-t{font-size:13px;font-weight:700;margin-bottom:3px;}
+.pt-d{font-size:12px;color:var(--textl);line-height:1.6;}
+.specs-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px;}
+.sp{background:#0f172a;border-radius:10px;padding:10px;text-align:center;}
+.sp-v{font-size:13px;font-weight:800;color:#74c69d;}
+.sp-l{font-size:9px;color:#94a3b8;margin-top:2px;}
+#gallery{background:var(--sand2);}
+.gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;}
+@media(max-width:768px){.gallery-grid{grid-template-columns:1fr;}}
+.gallery-card{border-radius:18px;overflow:hidden;box-shadow:0 12px 40px #2d6a4f15;position:relative;background:#fff;border:1px solid #e2e8f0;}
+.gallery-card img{width:100%;display:block;object-fit:cover;transition:transform 0.4s;}
+.gallery-card:hover img{transform:scale(1.03);}
+.gallery-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(15,26,15,0.85));padding:20px 16px 14px;color:#fff;font-size:12px;font-weight:700;}
+.gallery-sub{font-size:10px;color:#74c69d;margin-top:2px;}
+.gallery-ph{background:linear-gradient(135deg,#0f1a0f,#1a2e1a);min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+#video-section{background:#fff;}
+.video-wrap{max-width:720px;margin:36px auto 0;border-radius:18px;overflow:hidden;box-shadow:0 20px 60px #2d6a4f22;background:#0f1a0f;border:1px solid #2d6a4f44;}
+.video-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 20px;text-align:center;}
+#features{background:var(--sand2);}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:45px;}
+.fc{background:#fff;border-radius:14px;padding:20px;border:1px solid #e2e8f0;transition:all 0.3s;position:relative;overflow:hidden;}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#2d6a4f,#74c69d);}
+.fc:hover{transform:translateY(-3px);box-shadow:0 10px 35px #2d6a4f1a;}
+.fc-ic{font-size:26px;margin-bottom:10px;display:block;}
+.fc-t{font-size:13px;font-weight:800;margin-bottom:5px;}
+.fc-d{font-size:12px;color:var(--textl);line-height:1.6;}
+.fc-tag{display:inline-block;background:#2d6a4f15;color:#2d6a4f;font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;margin-top:7px;}
+/* 3-factor monitor highlight */
+.monitor-banner{background:linear-gradient(135deg,#052e16,#0a3d1f);border-radius:14px;padding:20px 24px;margin-top:45px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;border:1px solid #22c55e33;}
+.monitor-item{text-align:center;flex:1;min-width:120px;}
+.monitor-icon{font-size:32px;margin-bottom:6px;}
+.monitor-title{font-size:13px;font-weight:800;color:#74c69d;}
+.monitor-sub{font-size:11px;color:#64748b;margin-top:3px;}
+.monitor-divider{width:1px;height:60px;background:#1a3a2a;}
+#how{background:#fff;}
+.timeline{max-width:660px;margin:45px auto 0;}
+.ts{display:flex;gap:16px;position:relative;}
+.ts:not(:last-child)::after{content:'';position:absolute;left:17px;top:42px;bottom:-16px;width:2px;background:linear-gradient(#2d6a4f,#74c69d);}
+.ts-n{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2d6a4f,#40916c);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;}
+.ts-c{padding:0 0 32px;}
+.ts-t{font-size:13px;font-weight:800;margin-bottom:4px;}
+.ts-d{font-size:12px;color:var(--textl);line-height:1.6;}
+.ts-chip{display:inline-block;background:#f4e9d8;color:#6b4c2a;font-size:9px;font-weight:700;padding:2px 7px;border-radius:7px;margin-top:5px;}
+#specs{background:linear-gradient(135deg,#0f1a0f,#1a2e1a);}
+#specs .stit{color:#fff;}#specs .stag{background:#2d6a4f44;color:#74c69d;}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin-top:45px;}
+.spc{background:#1a2e1a;border:1px solid #2d6a4f44;border-radius:12px;padding:16px;}
+.spc-l{font-size:9px;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.spc-v{font-size:15px;font-weight:800;color:#74c69d;}
+.spc-d{font-size:10px;color:#374151;margin-top:3px;}
+#aichat{background:var(--sand2);}
+.chat-wrap{background:#fff;border-radius:18px;border:1px solid #e2e8f0;overflow:hidden;max-width:660px;margin:36px auto 0;box-shadow:0 16px 50px #2d6a4f12;}
+.ch{background:linear-gradient(135deg,#0f1a0f,#243324);padding:13px 16px;display:flex;align-items:center;gap:10px;}
+.ca{width:32px;height:32px;background:linear-gradient(135deg,#2d6a4f,#74c69d);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.ci h4{color:#fff;font-size:12px;font-weight:700;}.ci p{color:#64748b;font-size:10px;}
+.sdot{width:7px;height:7px;background:#22c55e;border-radius:50%;animation:pulse 2s infinite;margin-left:auto;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.cm{padding:16px;height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:#fafafa;}
+.msg{max-width:82%;padding:9px 12px;border-radius:14px;font-size:12px;line-height:1.6;}
+.msg.bot{background:#fff;border:1px solid #e2e8f0;align-self:flex-start;border-radius:4px 14px 14px 14px;}
+.msg.user{background:linear-gradient(135deg,#2d6a4f,#40916c);color:#fff;align-self:flex-end;border-radius:14px 14px 4px 14px;}
+.msg.loading{color:#94a3b8;font-style:italic;}
+.cs{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 12px;background:#fff;}
+.chip{background:#f4e9d8;color:#6b4c2a;border:none;border-radius:16px;padding:5px 10px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;}
+.chip:hover{background:#2d6a4f;color:#fff;}
+.cia{padding:12px 14px;border-top:1px solid #e2e8f0;display:flex;gap:8px;background:#fff;}
+.ci-inp{flex:1;border:1px solid #e2e8f0;border-radius:18px;padding:9px 14px;font-size:12px;outline:none;font-family:inherit;}
+.ci-inp:focus{border-color:#74c69d;}
+.ci-btn{background:linear-gradient(135deg,#2d6a4f,#40916c);border:none;border-radius:18px;padding:9px 16px;color:#fff;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;}
+#team{background:#fff;}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:45px;}
+.tc-card{background:var(--sand2);border-radius:14px;padding:22px 16px;text-align:center;border:1px solid #e2e8f0;transition:all 0.3s;}
+.tc-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px #2d6a4f12;}
+.tc-av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#2d6a4f,#74c69d);display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 12px;}
+.tc-name{font-size:13px;font-weight:800;margin-bottom:3px;}
+.tc-role{font-size:11px;color:var(--textl);}
+.tc-school{font-size:10px;color:#94a3b8;margin-top:4px;line-height:1.4;}
+.mentor-card{background:linear-gradient(135deg,#0f1a0f,#1a2e1a);border-color:#2d6a4f44;}
+.mentor-card .tc-name{color:#fff;}
+.mentor-card .tc-role{color:#74c69d;}
+.mentor-card .tc-school{color:#64748b;}
+#faq{background:var(--sand2);}
+.faq-list{max-width:680px;margin:45px auto 0;display:flex;flex-direction:column;gap:10px;}
+.fi{background:#fff;border-radius:11px;border:1px solid #e2e8f0;overflow:hidden;}
+.fq{padding:14px 18px;font-size:13px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.fq:hover{background:#f4e9d8;}
+.fa-arrow{transition:transform 0.3s;color:#2d6a4f;font-size:16px;}
+.fa-arrow.open{transform:rotate(45deg);}
+.fa{padding:0 18px;font-size:12px;color:var(--textl);line-height:1.7;max-height:0;overflow:hidden;transition:all 0.3s;}
+.fa.open{padding:0 18px 14px;max-height:200px;}
+#contact{background:linear-gradient(135deg,#0f1a0f,#243324);}
+#contact .stit{color:#fff;}#contact .ssub{color:#94a3b8;}#contact .stag{background:#2d6a4f44;color:#74c69d;}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:45px;align-items:start;}
+@media(max-width:768px){.cg{grid-template-columns:1fr;}}
+.ci-info{display:flex;flex-direction:column;gap:16px;}
+.cit{display:flex;gap:12px;align-items:flex-start;}
+.cic{width:36px;height:36px;background:#2d6a4f33;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.cil{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:1px;}
+.civ{font-size:13px;color:#fff;font-weight:600;margin-top:2px;}
+.cf{background:#1a2e1a;border-radius:14px;padding:20px;border:1px solid #2d6a4f44;}
+.fg{margin-bottom:14px;}
+.fl{font-size:11px;color:#94a3b8;font-weight:600;display:block;margin-bottom:5px;}
+.fi-inp{width:100%;background:#0f1a0f;border:1px solid #2d6a4f44;border-radius:8px;padding:9px 12px;color:#fff;font-size:12px;font-family:inherit;outline:none;}
+.fi-inp:focus{border-color:#74c69d;}
+.fi-inp::placeholder{color:#374151;}
+textarea.fi-inp{height:90px;resize:vertical;}
+.fb{width:100%;background:linear-gradient(135deg,#2d6a4f,#40916c);border:none;border-radius:9px;padding:11px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;}
+footer{background:#050d05;padding:36px 8% 18px;border-top:1px solid #1a2e1a;}
+.fi-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.fl-logo{font-size:18px;font-weight:800;color:#fff;}.fl-logo span{color:#74c69d;}
+.fl-links{display:flex;gap:16px;flex-wrap:wrap;}
+.fl-links a{color:#64748b;text-decoration:none;font-size:12px;}
+.fl-links a:hover{color:#74c69d;}
+.fc-row{width:100%;text-align:center;color:#374151;font-size:11px;margin-top:18px;padding-top:18px;border-top:1px solid #1a2e1a;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#home"><div class="logo-icon">🌿</div><div class="logo-text">Bio<span>Bot</span></div></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Prototype</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#aichat" class="nav-cta">Try AI Chat</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div>
+    <div class="hero-badge">🌱 Made in Tamil Nadu, India · Anna University</div>
+    <h1>Smart Composting<br><span>Powered by the Sun</span></h1>
+    <p>BioBot is a solar-powered IoT smart composter that monitors temperature, humidity and gas levels 24/7, mixes automatically, and answers your questions through an AI-powered Telegram chatbot.</p>
+    <div class="hero-btns">
+      <a href="#features" class="btn-p">Explore Features</a>
+      <a href="#aichat" class="btn-s">Try AI Chat</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-v">20L</div><div class="stat-l">Capacity</div></div>
+      <div><div class="stat-v">24/7</div><div class="stat-l">Solar Power</div></div>
+      <div><div class="stat-v">3</div><div class="stat-l">Key Sensors</div></div>
+      <div><div class="stat-v">60</div><div class="stat-l">Day Cycle</div></div>
+      <div><div class="stat-v">Rs.8,500</div><div class="stat-l">Build Cost</div></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div style="background:linear-gradient(135deg,#1a2e1a,#2d6a4f);border-radius:24px;padding:40px;text-align:center;box-shadow:0 40px 80px #00000077;animation:float 4s ease-in-out infinite;max-width:340px;">
+      <div style="font-size:80px;margin-bottom:16px;">🌿</div>
+      <div style="color:#74c69d;font-size:20px;font-weight:800;">BioBot</div>
+      <div style="color:#64748b;font-size:12px;margin-top:6px;">Smart Solar Composter</div>
+      <div style="display:flex;justify-content:center;gap:16px;margin-top:20px;">
+        <div style="text-align:center;"><div style="font-size:18px;font-weight:800;color:#74c69d;">47°C</div><div style="font-size:9px;color:#64748b;">Temp</div></div>
+        <div style="text-align:center;"><div style="font-size:18px;font-weight:800;color:#38bdf8;">62%</div><div style="font-size:9px;color:#64748b;">Humidity</div></div>
+        <div style="text-align:center;"><div style="font-size:18px;font-weight:800;color:#a3e635;">320</div><div style="font-size:9px;color:#64748b;">Gas ADC</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="stag">About BioBot</div>
+  <div class="stit">What is BioBot?</div>
+  <div class="ssub">A compact intelligent composting solution designed for urban Indian households, built by student innovators from Anna University, Tiruchirappalli.</div>
+  <div class="about-grid">
+    <div class="about-visual">
+      <div style="font-size:60px;margin-bottom:12px;">🌿</div>
+      <div style="color:#74c69d;font-size:16px;font-weight:800;">BioBot Smart Composter</div>
+      <div style="color:#64748b;font-size:12px;margin-top:6px;">ABS Body · Weather Sealed · Solar Powered</div>
+      <div class="specs-row">
+        <div class="sp"><div class="sp-v">20L</div><div class="sp-l">Volume</div></div>
+        <div class="sp"><div class="sp-v">Solar</div><div class="sp-l">Power</div></div>
+        <div class="sp"><div class="sp-v">ESP32</div><div class="sp-l">Controller</div></div>
+        <div class="sp"><div class="sp-v">60 Days</div><div class="sp-l">Cycle</div></div>
+        <div class="sp"><div class="sp-v">TN</div><div class="sp-l">Origin</div></div>
+        <div class="sp"><div class="sp-v">Rs.8,500</div><div class="sp-l">Cost</div></div>
+      </div>
+    </div>
+    <div class="about-points">
+      <div class="pt"><div class="pt-ic" style="background:#2d6a4f22">🎯</div><div><div class="pt-t">The Problem We Solve</div><div class="pt-d">Over 50% of household waste in India is organic and ends up in landfills producing methane. BioBot converts kitchen scraps into rich compost right at home, automatically, with zero effort.</div></div></div>
+      <div class="pt"><div class="pt-ic" style="background:#e76f5122">🔬</div><div><div class="pt-t">Engineering Behind It</div><div class="pt-d">Built using ESP32, DHT22 sensor, MQ-135 gas sensor, DS3231 RTC, OLED display, DC gear motor, 6V 5W solar panel and TP4056 charger inside a durable ABS weather-sealed body.</div></div></div>
+      <div class="pt"><div class="pt-ic" style="background:#74c69d22">🤖</div><div><div class="pt-t">AI-Powered Intelligence</div><div class="pt-d">Integrated with Gemini AI through a standalone Telegram chatbot. Users can ask anything about composting and receive smart, expert answers anytime — even when the device is offline.</div></div></div>
+      <div class="pt"><div class="pt-ic" style="background:#f4a26122">📱</div><div><div class="pt-t">Blynk IoT Dashboard</div><div class="pt-d">Live sensor readings visible on Blynk app with colour-coded gauges, history graphs and a manual mix button — all updating every 2 seconds when connected to WiFi.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="stag">Prototype</div>
+  <div class="stit">See BioBot Up Close</div>
+  <div class="ssub">Real prototype images showing the product design, PCB layer and internal assembly.</div>
+  <div class="gallery-grid">
+    <div class="gallery-card" style="grid-row:span 2;">
+      <div class="gallery-ph" style="min-height:420px;">
+        <div style="font-size:60px;">🌿</div>
+        <div style="color:#74c69d;font-size:14px;font-weight:700;">Hero Product Shot</div>
+        <div style="color:#64748b;font-size:11px;">Upload your prototype photo here</div>
+      </div>
+      <div class="gallery-label">BioBot — Product Design<div class="gallery-sub">Solar panel lid · OLED display · Sliding drawer base</div></div>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-ph" style="min-height:200px;">
+        <div style="font-size:36px;">🔌</div>
+        <div style="color:#74c69d;font-size:12px;font-weight:700;">PCB and Sensor Layer</div>
+      </div>
+      <div class="gallery-label">Sensor Array PCB<div class="gallery-sub">DHT22 · MQ-135 · DS3231 RTC</div></div>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-ph" style="min-height:200px;">
+        <div style="font-size:36px;">🏗️</div>
+        <div style="color:#b7e4c7;font-size:12px;font-weight:700;">Body Exploded View</div>
+      </div>
+      <div class="gallery-label">ABS Body Assembly<div class="gallery-sub">Weather-sealed · Rubber gaskets · Side hatch</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video-section" style="background:#fff;">
+  <div class="tc">
+    <div class="stag">Demo</div>
+    <div class="stit">See BioBot in Action</div>
+    <div class="ssub">Watch the animated prototype walkthrough showing all features live.</div>
+  </div>
+  <div class="video-wrap">
+    <div class="video-ph">
+      <div style="font-size:50px;margin-bottom:12px;">▶️</div>
+      <div style="color:#74c69d;font-size:16px;font-weight:700;margin-bottom:6px;">BioBot Product Demo</div>
+      <div style="color:#64748b;font-size:12px;">Share your YouTube or Google Drive link to embed the video here.</div>
+      <div style="margin-top:14px;background:#2d6a4f33;border:1px solid #74c69d44;border-radius:20px;padding:6px 14px;font-size:11px;color:#74c69d;font-weight:700;">🎬 Video Coming Soon</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" style="background:var(--sand2);">
+  <div class="tc">
+    <div class="stag">Features</div>
+    <div class="stit">Everything Your Compost Needs</div>
+    <div class="ssub">A focused set of smart features making composting effortless and intelligent.</div>
+  </div>
+
+  <!-- 3-Factor Monitoring Banner -->
+  <div class="monitor-banner">
+    <div style="font-size:13px;font-weight:800;color:#74c69d;white-space:nowrap;">3-Factor<br>Monitoring</div>
+    <div class="monitor-divider"></div>
+    <div class="monitor-item">
+      <div class="monitor-icon">🌡️</div>
+      <div class="monitor-title">Temperature</div>
+      <div class="monitor-sub">Optimal 40–65°C<br>DHT22 sensor</div>
+    </div>
+    <div class="monitor-divider"></div>
+    <div class="monitor-item">
+      <div class="monitor-icon">💧</div>
+      <div class="monitor-title">Humidity</div>
+      <div class="monitor-sub">Optimal 50–70%<br>DHT22 sensor</div>
+    </div>
+    <div class="monitor-divider"></div>
+    <div class="monitor-item">
+      <div class="monitor-icon">💨</div>
+      <div class="monitor-title">Gas Level</div>
+      <div class="monitor-sub">Safe below 500 ADC<br>MQ-135 sensor</div>
+    </div>
+    <div style="font-size:11px;color:#64748b;flex:1;min-width:160px;">Both temperature and humidity measured by a single DHT22 sensor. Gas monitored by MQ-135 detecting ammonia and CO₂.</div>
+  </div>
+
+  <div class="feat-grid" style="margin-top:20px;">
+    <div class="fc"><span class="fc-ic">☀️</span><div class="fc-t">Solar Powered</div><div class="fc-d">6V 5W solar panel charges dual 18650 batteries through TP4056. Runs 24/7 with zero electricity cost.</div><span class="fc-tag">Off-Grid</span></div>
+    <div class="fc"><span class="fc-ic">🌡️</span><div class="fc-t">3-Factor Monitoring</div><div class="fc-d">DHT22 tracks temperature and humidity simultaneously. MQ-135 detects ammonia and CO₂ gas spikes. All three update every 2 seconds.</div><span class="fc-tag">Real-Time</span></div>
+    <div class="fc"><span class="fc-ic">⚙️</span><div class="fc-t">Auto Mixing</div><div class="fc-d">DC gear motor with stainless stirrer automatically aerates compost every 8 hours. Trigger manual mix from Blynk app anytime.</div><span class="fc-tag">Automated</span></div>
+    <div class="fc"><span class="fc-ic">🖥️</span><div class="fc-t">OLED Display</div><div class="fc-d">0.96 inch screen shows temperature, humidity, gas level, day count and health status live — works even without WiFi.</div><span class="fc-tag">Always On</span></div>
+    <div class="fc"><span class="fc-ic">📱</span><div class="fc-t">Blynk IoT Dashboard</div><div class="fc-d">Live colour-coded gauges, history graphs and manual mix button on the free Blynk app. Updates every 2 seconds when connected.</div><span class="fc-tag">IoT Connected</span></div>
+    <div class="fc"><span class="fc-ic">🤖</span><div class="fc-t">Gemini AI Chatbot</div><div class="fc-d">Standalone Telegram chatbot powered by Google Gemini AI answers any composting question — runs independently 24/7 on cloud.</div><span class="fc-tag">AI Powered</span></div>
+    <div class="fc"><span class="fc-ic">🚨</span><div class="fc-t">Smart Alerts</div><div class="fc-d">Blynk push notifications when temperature, humidity or gas go out of range — with exact steps to fix the problem.</div><span class="fc-tag">Proactive</span></div>
+    <div class="fc"><span class="fc-ic">🗓️</span><div class="fc-t">Day Counter</div><div class="fc-d">DS3231 real-time clock tracks exact composting days even when power is off. Guides through all 4 composting stages.</div><span class="fc-tag">Precise</span></div>
+    <div class="fc"><span class="fc-ic">💧</span><div class="fc-t">Clean Harvest</div><div class="fc-d">Leachate drains through raised mesh platform into slide-out tray. Pull-out bottom drawer collects finished compost after 60 days.</div><span class="fc-tag">Zero Mess</span></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" style="background:#fff;">
+  <div class="tc">
+    <div class="stag">How It Works</div>
+    <div class="stit">Simple. Smart. Automatic.</div>
+    <div class="ssub">BioBot handles everything — you add scraps and harvest compost 60 days later.</div>
+  </div>
+  <div class="timeline">
+    <div class="ts"><div class="ts-n">1</div><div class="ts-c"><div class="ts-t">Add Kitchen Scraps Daily</div><div class="ts-d">Open the round twist-lock input hatch and drop vegetable peels, fruit waste and coffee grounds into the 20L basket. Cover with cocopeat or dry paper.</div><span class="ts-chip">🥦 Greens + Browns</span></div></div>
+    <div class="ts"><div class="ts-n">2</div><div class="ts-c"><div class="ts-t">3 Sensors Monitor 24/7</div><div class="ts-d">DHT22 tracks temperature and humidity. MQ-135 monitors gas and ammonia. All readings update every 2 seconds on OLED and Blynk app.</div><span class="ts-chip">📡 Continuous Sensing</span></div></div>
+    <div class="ts"><div class="ts-n">3</div><div class="ts-c"><div class="ts-t">Motor Mixes Every 8 Hours</div><div class="ts-d">The horizontal paddle inside the basket spins automatically for 60 seconds every 8 hours. Also trigger manually from the Blynk app.</div><span class="ts-chip">⚙️ Auto Aeration</span></div></div>
+    <div class="ts"><div class="ts-n">4</div><div class="ts-c"><div class="ts-t">Monitor on Blynk App</div><div class="ts-d">Open Blynk on your phone to see live gauges, graphs and health status. Receive push notifications if any reading goes out of range.</div><span class="ts-chip">📱 Live Dashboard</span></div></div>
+    <div class="ts"><div class="ts-n">5</div><div class="ts-c"><div class="ts-t">Ask BioBot AI on Telegram</div><div class="ts-d">Message the BioBot Telegram chatbot anytime for composting advice. Powered by Gemini AI and runs 24/7 on cloud independently.</div><span class="ts-chip">🤖 AI Answers</span></div></div>
+    <div class="ts"><div class="ts-n">6</div><div class="ts-c"><div class="ts-t">Harvest at Day 60</div><div class="ts-d">Pull the bottom drawer for finished compost. Drain leachate from the side tap — dilute 1:10 with water as liquid fertiliser.</div><span class="ts-chip">🌱 Ready to Use</span></div></div>
+  </div>
+</section>
+
+<!-- SPECS -->
+<section id="specs">
+  <div class="tc">
+    <div class="stag">Specifications</div>
+    <div class="stit">Technical Specs</div>
+    <div class="ssub" style="color:#94a3b8;margin:0 auto;">Every component chosen for reliability in Indian conditions.</div>
+  </div>
+  <div class="sg">
+    <div class="spc"><div class="spc-l">Microcontroller</div><div class="spc-v">ESP32 DevKit V1</div><div class="spc-d">Dual-core 240MHz, WiFi 2.4GHz</div></div>
+    <div class="spc"><div class="spc-l">Solar Panel</div><div class="spc-v">6V 5W</div><div class="spc-d">Upgraded for sufficient power</div></div>
+    <div class="spc"><div class="spc-l">Battery</div><div class="spc-v">2x 18650 6Ah</div><div class="spc-d">Parallel — 12+ hour backup</div></div>
+    <div class="spc"><div class="spc-l">Temp + Humidity</div><div class="spc-v">DHT22</div><div class="spc-d">Both from single sensor</div></div>
+    <div class="spc"><div class="spc-l">Gas Sensor</div><div class="spc-v">MQ-135</div><div class="spc-d">NH3 and CO2 detection</div></div>
+    <div class="spc"><div class="spc-l">Display</div><div class="spc-v">0.96" OLED</div><div class="spc-d">SSD1306, I2C, always on</div></div>
+    <div class="spc"><div class="spc-l">RTC Module</div><div class="spc-v">DS3231</div><div class="spc-d">Accurate day counter</div></div>
+    <div class="spc"><div class="spc-l">IoT Platform</div><div class="spc-v">Blynk IoT</div><div class="spc-d">Free tier, live dashboard</div></div>
+    <div class="spc"><div class="spc-l">AI Chatbot</div><div class="spc-v">Gemini AI</div><div class="spc-d">Via Telegram, runs on cloud</div></div>
+    <div class="spc"><div class="spc-l">Bin Volume</div><div class="spc-v">20 Litres</div><div class="spc-d">20-25 days of organic waste</div></div>
+    <div class="spc"><div class="spc-l">Body</div><div class="spc-v">ABS Plastic</div><div class="spc-d">Weather-sealed, rubber gaskets</div></div>
+    <div class="spc"><div class="spc-l">Build Cost</div><div class="spc-v">Rs.8,500</div><div class="spc-d">Complete prototype</div></div>
+  </div>
+</section>
+
+<!-- AI CHAT -->
+<section id="aichat">
+  <div class="tc">
+    <div class="stag">AI Assistant</div>
+    <div class="stit">Ask BioBot Anything</div>
+    <div class="ssub">Our Gemini AI assistant answers all composting questions — same AI that powers the Telegram chatbot.</div>
+  </div>
+  <div class="chat-wrap">
+    <div class="ch">
+      <div class="ca">🌿</div>
+      <div class="ci"><h4>BioBot AI</h4><p>Composting Expert · Powered by Gemini</p></div>
+      <div class="sdot"></div>
+    </div>
+    <div class="cm" id="chatMsgs">
+      <div class="msg bot">👋 Hi! I am BioBot AI from Anna University Tiruchirappalli. Ask me about composting, temperature, gas levels, what to add, or how BioBot works!</div>
+    </div>
+    <div class="cs">
+      <button class="chip" onclick="ask('Is my compost healthy?')">Is compost healthy?</button>
+      <button class="chip" onclick="ask('What can I add today?')">What to add?</button>
+      <button class="chip" onclick="ask('Why does it smell bad?')">Bad smell fix</button>
+      <button class="chip" onclick="ask('When will compost be ready?')">When ready?</button>
+      <button class="chip" onclick="ask('Tell me about BioBot')">About BioBot</button>
+    </div>
+    <div class="cia">
+      <input class="ci-inp" id="chatIn" placeholder="Ask about BioBot or composting..." onkeydown="if(event.key==='Enter')sendMsg()">
+      <button class="ci-btn" onclick="sendMsg()">Send</button>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" style="background:#fff;">
+  <div class="tc">
+    <div class="stag">Our Team</div>
+    <div class="stit">The Minds Behind BioBot</div>
+    <div class="ssub">Student innovators from University College of Engineering BIT Campus, Anna University, Tiruchirappalli.</div>
+  </div>
+  <div class="team-grid">
+    <div class="tc-card">
+      <div class="tc-av">👩‍💻</div>
+      <div class="tc-name">Shri Harini. C</div>
+      <div class="tc-role">Team Lead and Facilitator</div>
+      <div class="tc-school">UCE BIT Campus, Anna University, Trichy</div>
+    </div>
+    <div class="tc-card">
+      <div class="tc-av">👩‍🎨</div>
+      <div class="tc-name">Thenmozhi. R</div>
+      <div class="tc-role">Design and Development</div>
+      <div class="tc-school">UCE BIT Campus, Anna University, Trichy</div>
+    </div>
+    <div class="tc-card">
+      <div class="tc-av">👩‍🔬</div>
+      <div class="tc-name">Samyuktha. M. S</div>
+      <div class="tc-role">Analyst and Advisory</div>
+      <div class="tc-school">UCE BIT Campus, Anna University, Trichy</div>
+    </div>
+    <div class="tc-card mentor-card">
+      <div class="tc-av" style="background:linear-gradient(135deg,#40916c,#74c69d);">👩‍🏫</div>
+      <div class="tc-name">Dr. Umamaheshwari. A</div>
+      <div class="tc-role">Assistant Professor · Mentor</div>
+      <div class="tc-school">UCE BIT Campus, Anna University, Trichy 620024</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:24px;padding:16px;background:var(--sand2);border-radius:12px;border:1px solid #e2e8f0;">
+    <div style="font-size:12px;color:var(--textl);font-weight:600;">University College of Engineering BIT Campus, Anna University</div>
+    <div style="font-size:11px;color:#94a3b8;margin-top:4px;">Tiruchirappalli 620024, Tamil Nadu, India</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="tc">
+    <div class="stag">FAQ</div>
+    <div class="stit">Frequently Asked Questions</div>
+    <div class="ssub">Everything you need to know about BioBot.</div>
+  </div>
+  <div class="faq-list">
+    <div class="fi"><div class="fq" onclick="tfaq(this)">How many sensors does BioBot use? <span class="fa-arrow">+</span></div><div class="fa">BioBot uses a 3-factor monitoring system. The DHT22 sensor measures both temperature and humidity simultaneously. The MQ-135 sensor detects gas levels including ammonia and CO2. Together these three parameters give a complete picture of compost health.</div></div>
+    <div class="fi"><div class="fq" onclick="tfaq(this)">Does BioBot need grid electricity? <span class="fa-arrow">+</span></div><div class="fa">No. BioBot runs on a 6V 5W solar panel with dual 18650 batteries providing over 12 hours of backup. Zero electricity cost.</div></div>
+    <div class="fi"><div class="fq" onclick="tfaq(this)">How do I monitor readings remotely? <span class="fa-arrow">+</span></div><div class="fa">Download the free Blynk IoT app on your phone. Once connected to WiFi, BioBot sends live readings every 2 seconds to colour-coded gauges on the app. You also receive push notifications for any alert conditions.</div></div>
+    <div class="fi"><div class="fq" onclick="tfaq(this)">What is the AI chatbot and how is it different? <span class="fa-arrow">+</span></div><div class="fa">The BioBot Telegram chatbot is powered by Google Gemini AI and runs independently on cloud 24/7 — even when the physical device is offline. It answers any composting question, explains stages, troubleshoots problems and provides expert advice.</div></div>
+    <div class="fi"><div class="fq" onclick="tfaq(this)">How long does composting take? <span class="fa-arrow">+</span></div><div class="fa">A full cycle takes 45 to 60 days through 4 stages: Mesophilic (0-7 days), Thermophilic (7-30 days), Cooling (30-45 days) and Curing (45-60 days).</div></div>
+    <div class="fi"><div class="fq" onclick="tfaq(this)">Will it smell bad? <span class="fa-arrow">+</span></div><div class="fa">No. BioBot has a weather-sealed ABS body with rubber gaskets and an activated charcoal and neem filter above the input hatch. The MQ-135 sensor alerts you instantly if gas levels spike with exact steps to fix it.</div></div>
+    <div class="fi"><div class="fq" onclick="tfaq(this)">Does the OLED work without WiFi? <span class="fa-arrow">+</span></div><div class="fa">Yes. The OLED display works completely independently of WiFi. It always shows live temperature, humidity, gas level, day count and health status. Only the Blynk app and notifications require WiFi.</div></div>
+    <div class="fi"><div class="fq" onclick="tfaq(this)">How much does BioBot cost to build? <span class="fa-arrow">+</span></div><div class="fa">The complete BioBot prototype costs approximately Rs.8,500 including all electronics, mechanical parts and materials. Running cost is near zero thanks to solar power.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="stag">Contact</div>
+  <div class="stit">Get In Touch</div>
+  <div class="ssub">Interested in BioBot? Want to collaborate or learn more?</div>
+  <div class="cg">
+    <div class="ci-info">
+      <div class="cit"><div class="cic">📍</div><div><div class="cil">Location</div><div class="civ">Tiruchirappalli 620024, Tamil Nadu</div></div></div>
+      <div class="cit"><div class="cic">🏫</div><div><div class="cil">Institution</div><div class="civ">UCE BIT Campus, Anna University</div></div></div>
+      <div class="cit"><div class="cic">📧</div><div><div class="cil">Email</div><div class="civ">team.biobot@gmail.com</div></div></div>
+      <div class="cit"><div class="cic">📱</div><div><div class="cil">Telegram AI Chat</div><div class="civ">@mybiobot_bot</div></div></div>
+      <div class="cit"><div class="cic">🌐</div><div><div class="cil">Built With</div><div class="civ">ESP32 · Blynk · Gemini AI · Solar</div></div></div>
+    </div>
+    <div class="cf">
+      <div class="fg"><label class="fl">Your Name</label><input class="fi-inp" placeholder="Enter your name"></div>
+      <div class="fg"><label class="fl">Email Address</label><input class="fi-inp" type="email" placeholder="Enter your email"></div>
+      <div class="fg"><label class="fl">Message</label><textarea class="fi-inp" placeholder="Your message..."></textarea></div>
+      <button class="fb" onclick="this.textContent='Sent!';setTimeout(function(){document.querySelector('.fb').textContent='Send Message';},2500)">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi-row">
+    <div class="fl-logo">Bio<span>Bot</span> 🌿</div>
+    <div class="fl-links">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#gallery">Prototype</a>
+      <a href="#features">Features</a><a href="#how">How It Works</a>
+      <a href="#team">Team</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="fc-row">2025 BioBot · UCE BIT Campus, Anna University, Tiruchirappalli · Made with love in Tamil Nadu, India</div>
+</footer>
+
+<script>
+function tfaq(el) {
+  var a = el.nextElementSibling;
+  var ar = el.querySelector('.fa-arrow');
+  var op = a.classList.contains('open');
+  var allA = document.querySelectorAll('.fa');
+  var allAr = document.querySelectorAll('.fa-arrow');
+  for (var i = 0; i < allA.length; i++) { allA[i].classList.remove('open'); }
+  for (var j = 0; j < allAr.length; j++) { allAr[j].classList.remove('open'); }
+  if (!op) { a.classList.add('open'); ar.classList.add('open'); }
+}
+
+function ask(q) { document.getElementById('chatIn').value = q; sendMsg(); }
+
+function sendMsg() {
+  var inp = document.getElementById('chatIn');
+  var q = inp.value.trim();
+  if (!q) return;
+  inp.value = '';
+  var msgs = document.getElementById('chatMsgs');
+  var ud = document.createElement('div');
+  ud.className = 'msg user';
+  ud.textContent = q;
+  msgs.appendChild(ud);
+  var ld = document.createElement('div');
+  ld.className = 'msg bot loading';
+  ld.textContent = 'BioBot is thinking...';
+  msgs.appendChild(ld);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: 'You are BioBot AI, the official composting assistant for BioBot — a solar-powered smart composter built by students at Anna University Tiruchirappalli. BioBot monitors temperature and humidity (DHT22), gas levels (MQ-135), uses DS3231 RTC for day counting, OLED display, DC motor for mixing, Blynk IoT for dashboard, Gemini AI chatbot on Telegram. 3-factor monitoring: temperature, humidity, gas. No soil moisture sensor. 20L capacity, Rs.8500 build cost. Reply in 3-4 friendly sentences with emojis.',
+      messages: [{ role: 'user', content: q }]
+    })
+  }).then(function(r) { return r.json(); }).then(function(d) {
+    var reply = d.content && d.content[0] ? d.content[0].text : fallback(q);
+    ld.classList.remove('loading');
+    ld.textContent = reply;
+    msgs.scrollTop = msgs.scrollHeight;
+  }).catch(function() {
+    ld.classList.remove('loading');
+    ld.textContent = fallback(q);
+    msgs.scrollTop = msgs.scrollHeight;
+  });
+}
+
+function fallback(q) {
+  q = q.toLowerCase();
+  if (q.indexOf('smell') >= 0 || q.indexOf('odour') >= 0) return 'Bad smell means pile is too wet or anaerobic. Drain the leachate tray, add dry cocopeat and trigger a mix. BioBot MQ-135 will alert you if gas spikes above safe limits!';
+  if (q.indexOf('ready') >= 0 || q.indexOf('harvest') >= 0) return 'Compost is ready at day 45-60 when dark brown, crumbly and smelling like forest soil. Pull the BioBot harvest drawer!';
+  if (q.indexOf('add') >= 0) return 'Add vegetable peels, fruit waste, coffee grounds and eggshells as greens. Balance with cocopeat or dry newspaper as browns. Never add meat or dairy!';
+  if (q.indexOf('biobot') >= 0 || q.indexOf('about') >= 0) return 'BioBot is a solar-powered smart composter built by students at Anna University Tiruchirappalli. It monitors 3 factors: temperature, humidity and gas, auto-mixes every 8 hours and shows readings on Blynk app!';
+  return 'Great question! BioBot monitors temperature, humidity and gas levels 24/7. Ask about composting tips, what to add, fixing smells or how BioBot works!';
+}
+</script>
+</body>
+</html>
