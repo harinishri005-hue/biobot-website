@@ -11,7 +11,7 @@
 /* ── RESET ─────────────────────────────────────── */
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',sans-serif;background:#FAFAF8;color:#1A1A1A;overflow-x:hidden;}
+body{font-family:'Inter',sans-serif;background:#FAFAF8;color:#1A1A1A;overflow-x:hidden;width:100%;}
 img{max-width:100%;height:auto;display:block;}
 a{text-decoration:none;color:inherit;}
 
@@ -26,499 +26,604 @@ a{text-decoration:none;color:inherit;}
   --text-m:   #4A4A4A;
   --text-l:   #8A8A8A;
   --gold:     #B89A5A;
-  --gold-l:   #D4B878;
   --white:    #FFFFFF;
   --border:   #E4E4DC;
-  --shadow:   0 2px 20px rgba(0,0,0,0.06);
-  --shadow-h: 0 8px 40px rgba(0,0,0,0.12);
   --r:        10px;
-  --r-l:      20px;
+  --r-l:      16px;
 }
 
 /* ── TYPOGRAPHY ─────────────────────────────────── */
-h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.15;}
-h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:700;}
-h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:500;}
-h3{font-size:1.2rem;font-weight:500;}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2;}
+h1{font-size:clamp(2rem,6vw,3.6rem);}
+h2{font-size:clamp(1.6rem,4vw,2.6rem);}
 p{line-height:1.75;color:var(--text-m);}
 .eyebrow{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);font-weight:600;}
 .serif-i{font-style:italic;color:var(--green);}
 
 /* ── LAYOUT ─────────────────────────────────────── */
-.container{max-width:1180px;margin:0 auto;padding:0 24px;}
-section{padding:96px 0;}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
-.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.container{max-width:1160px;margin:0 auto;padding:0 20px;}
+section{padding:72px 0;}
 
 /* ── NAV ─────────────────────────────────────────── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  padding:0 32px;height:64px;
+  padding:0 20px;height:60px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(250,250,248,0.92);
+  background:rgba(250,250,248,0.95);
   backdrop-filter:blur(12px);
   border-bottom:1px solid var(--border);
-  transition:all 0.3s;
 }
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--green);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--green);}
 .nav-logo span{font-style:italic;}
-.nav-links{display:flex;gap:32px;list-style:none;}
-.nav-links a{font-size:0.85rem;font-weight:500;color:var(--text-m);transition:color 0.2s;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{font-size:0.82rem;font-weight:500;color:var(--text-m);transition:color 0.2s;}
 .nav-links a:hover{color:var(--green);}
 .nav-cta{
   background:var(--green);color:#fff;
-  padding:8px 20px;border-radius:6px;
-  font-size:0.8rem;font-weight:600;letter-spacing:0.05em;
-  transition:background 0.2s;
+  padding:7px 16px;border-radius:6px;
+  font-size:0.78rem;font-weight:600;
+  white-space:nowrap;
 }
-.nav-cta:hover{background:var(--green-l);}
 
 /* ── HERO ────────────────────────────────────────── */
 #home{
-  min-height:100vh;padding:0;
-  display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;
+  padding:100px 0 64px;
   background:var(--cream);
-  position:relative;overflow:hidden;
 }
-.hero-bg-ring{
-  position:absolute;right:-200px;top:-200px;
-  width:700px;height:700px;border-radius:50%;
-  border:1px solid rgba(45,106,79,0.08);
-  pointer-events:none;
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;align-items:center;
 }
-.hero-bg-ring2{
-  position:absolute;right:-100px;top:-100px;
-  width:500px;height:500px;border-radius:50%;
-  border:1px solid rgba(45,106,79,0.05);
-  pointer-events:none;
-}
-.hero-content{padding:120px 0 80px 80px;}
 .hero-tag{
   display:inline-flex;align-items:center;gap:8px;
   background:#E8F5EE;border:1px solid #B7DFC9;
-  padding:5px 14px;border-radius:100px;
-  font-size:0.75rem;font-weight:600;color:var(--green);
-  margin-bottom:28px;
+  padding:5px 12px;border-radius:100px;
+  font-size:0.72rem;font-weight:600;color:var(--green);
+  margin-bottom:20px;
 }
-.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+.hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;flex-shrink:0;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
-.hero-title{margin-bottom:20px;}
+.hero-title{margin-bottom:16px;}
 .hero-title em{font-style:italic;color:var(--green);}
-.hero-sub{font-size:1.05rem;color:var(--text-m);max-width:480px;margin-bottom:36px;line-height:1.8;}
-.hero-actions{display:flex;gap:14px;align-items:center;margin-bottom:52px;}
+.hero-sub{font-size:1rem;max-width:440px;margin-bottom:28px;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px;}
 .btn-primary{
   background:var(--green);color:#fff;
-  padding:14px 28px;border-radius:8px;
-  font-size:0.9rem;font-weight:600;
-  transition:all 0.25s;
-  box-shadow:0 4px 14px rgba(45,106,79,0.25);
+  padding:12px 24px;border-radius:8px;
+  font-size:0.88rem;font-weight:600;
+  white-space:nowrap;
 }
-.btn-primary:hover{background:var(--green-l);transform:translateY(-1px);}
 .btn-ghost{
-  color:var(--green);font-size:0.9rem;font-weight:500;
-  display:flex;align-items:center;gap:6px;
-  padding:14px 20px;border-radius:8px;
+  color:var(--green);font-size:0.88rem;font-weight:500;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:12px 16px;border-radius:8px;
   border:1px solid var(--border);
-  transition:all 0.2s;
+  white-space:nowrap;
 }
-.btn-ghost:hover{border-color:var(--green);background:#E8F5EE;}
-.hero-stats{display:flex;gap:36px;}
-.hero-stat-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--green);}
-.hero-stat-lbl{font-size:0.75rem;color:var(--text-l);margin-top:2px;}
-
-/* Hero image side */
+.hero-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.hero-stat-num{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--green);}
+.hero-stat-lbl{font-size:0.7rem;color:var(--text-l);margin-top:2px;}
 .hero-visual{
-  height:100vh;
   background:linear-gradient(135deg,#E8F5EE,#D1F0E0);
-  display:flex;align-items:center;justify-content:center;
-  padding:40px;position:relative;
+  border-radius:var(--r-l);padding:24px;
 }
-.hero-img-card{
-  background:#fff;border-radius:var(--r-l);
-  padding:32px;
-  box-shadow:var(--shadow-h);
-  max-width:380px;width:100%;
-}
-.hero-img-card img{border-radius:var(--r);width:100%;margin-bottom:20px;}
-.hero-card-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center;}
-.hcs-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--green);}
-.hcs-lbl{font-size:0.62rem;color:var(--text-l);text-transform:uppercase;letter-spacing:0.08em;}
+.hero-img-card{background:#fff;border-radius:var(--r);padding:20px;box-shadow:0 4px 24px rgba(0,0,0,0.08);}
+.hero-img-card img{border-radius:8px;width:100%;margin-bottom:16px;}
+.hero-card-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;}
+.hcs-val{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--green);}
+.hcs-lbl{font-size:0.6rem;color:var(--text-l);text-transform:uppercase;}
 .hero-card-badge{
   display:flex;align-items:center;gap:8px;
-  background:#E8F5EE;border-radius:8px;padding:10px 14px;
-  font-size:0.8rem;color:var(--green);font-weight:500;
-  margin-top:14px;
+  background:#E8F5EE;border-radius:8px;padding:8px 12px;
+  font-size:0.75rem;color:var(--green);font-weight:500;
+  margin-top:12px;
 }
 
 /* ── TICKER ──────────────────────────────────────── */
 .ticker{
   background:var(--green);
-  color:#fff;padding:14px 0;
+  color:#fff;padding:12px 0;
   overflow:hidden;white-space:nowrap;
+  width:100%;
 }
 .ticker-track{
-  display:inline-flex;gap:48px;
+  display:inline-flex;gap:40px;
   animation:ticker 30s linear infinite;
-  font-size:0.8rem;letter-spacing:0.08em;font-weight:500;
+  font-size:0.78rem;letter-spacing:0.06em;font-weight:500;
 }
 .ticker-track span{opacity:0.6;}
 @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* ── IMPACT NUMBERS ──────────────────────────────── */
+/* ── IMPACT ─────────────────────────────────────── */
 #impact{background:var(--cream);}
 .impact-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);border-radius:var(--r-l);
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:var(--r-l);
   overflow:hidden;
-  margin-top:56px;
+  margin-top:48px;
 }
 .impact-cell{
-  background:var(--white);padding:40px 36px;
-  transition:background 0.2s;
+  background:var(--white);
+  padding:32px 24px;
 }
-.impact-cell:hover{background:#F5FBF7;}
 .impact-num{
   font-family:'Playfair Display',serif;
-  font-size:2.8rem;font-weight:700;color:var(--green);
-  margin-bottom:6px;
+  font-size:2.4rem;font-weight:700;
+  color:var(--green);margin-bottom:6px;
+  line-height:1;
 }
-.impact-lbl{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:8px;}
-.impact-desc{font-size:0.88rem;color:var(--text-l);line-height:1.65;}
+.impact-lbl{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:8px;}
+.impact-desc{font-size:0.83rem;color:var(--text-l);line-height:1.6;}
+
+/* ── SDG STRIP ───────────────────────────────────── */
+.sdg-strip{
+  background:var(--white);padding:36px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+}
+.sdg-items{
+  display:flex;align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;gap:10px;
+}
+.sdg-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:100px;
+  border:1px solid var(--border);
+  font-size:0.76rem;font-weight:600;
+  color:var(--text-m);background:var(--cream);
+  white-space:nowrap;
+}
+.sdg-badge span{font-weight:700;color:var(--green);}
 
 /* ── FEATURES ────────────────────────────────────── */
 #features{background:var(--cream-d);}
-.features-intro{max-width:560px;margin-bottom:64px;}
 .feature-cards{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:20px;
+  gap:16px;margin-top:48px;
 }
 .fc{
-  background:var(--white);
-  border-radius:var(--r-l);padding:28px;
-  border:1px solid var(--border);
-  transition:all 0.3s;
+  background:var(--white);border-radius:var(--r-l);
+  padding:22px;border:1px solid var(--border);
 }
-.fc:hover{border-color:var(--green-xl);box-shadow:var(--shadow-h);transform:translateY(-3px);}
 .fc-icon{
-  width:44px;height:44px;border-radius:10px;
+  width:40px;height:40px;border-radius:8px;
   background:#E8F5EE;
   display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;margin-bottom:16px;
+  font-size:1.2rem;margin-bottom:12px;
 }
-.fc-title{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:8px;}
-.fc-desc{font-size:0.82rem;color:var(--text-l);line-height:1.65;}
+.fc-title{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:6px;}
+.fc-desc{font-size:0.8rem;color:var(--text-l);line-height:1.6;}
 .fc-tag{
-  display:inline-block;margin-top:12px;
+  display:inline-block;margin-top:10px;
   background:#E8F5EE;color:var(--green);
-  font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
-  padding:3px 8px;border-radius:4px;
+  font-size:0.66rem;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:3px 7px;border-radius:4px;
 }
 
 /* ── HOW IT WORKS ────────────────────────────────── */
 #how{background:var(--white);}
-.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:56px;position:relative;}
-.steps::before{
-  content:'';position:absolute;top:32px;left:10%;right:10%;height:1px;
-  background:linear-gradient(90deg,transparent,var(--border),transparent);
+.steps{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:0;margin-top:48px;
+  position:relative;
 }
-.step{padding:0 12px;text-align:center;position:relative;}
+.steps::before{
+  content:'';position:absolute;
+  top:30px;left:10%;right:10%;
+  height:1px;background:var(--border);
+}
+.step{padding:0 8px;text-align:center;position:relative;}
 .step-num{
-  width:64px;height:64px;border-radius:50%;
+  width:60px;height:60px;border-radius:50%;
   background:var(--white);border:2px solid var(--green);
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;
-  font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;
-  color:var(--green);position:relative;z-index:1;
-  transition:all 0.3s;
+  margin:0 auto 16px;
+  font-family:'Playfair Display',serif;font-size:1rem;
+  font-weight:700;color:var(--green);position:relative;z-index:1;
 }
-.step:hover .step-num{background:var(--green);color:#fff;}
-.step-title{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:8px;}
-.step-desc{font-size:0.78rem;color:var(--text-l);line-height:1.6;}
-.step-tag{font-size:0.68rem;color:var(--green);font-weight:600;margin-top:8px;}
+.step-title{font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:6px;}
+.step-desc{font-size:0.78rem;color:var(--text-l);line-height:1.55;}
+.step-tag{font-size:0.66rem;color:var(--green);font-weight:600;margin-top:6px;}
 
 /* ── VIDEO ───────────────────────────────────────── */
-#video{background:var(--green);padding:96px 0;}
+#video{background:var(--green);padding:72px 0;}
 #video h2{color:#fff;}
-#video p{color:rgba(255,255,255,0.7);}
+#video p{color:rgba(255,255,255,0.75);}
 .video-wrapper{
-  margin-top:48px;border-radius:var(--r-l);overflow:hidden;
-  box-shadow:0 24px 80px rgba(0,0,0,0.3);
-  aspect-ratio:16/9;
+  margin-top:36px;border-radius:var(--r-l);
+  overflow:hidden;aspect-ratio:16/9;
   background:#111;
-  display:flex;align-items:center;justify-content:center;
 }
-.video-wrapper iframe{width:100%;height:100%;border:0;}
+.video-wrapper iframe{width:100%;height:100%;border:0;display:block;}
 
-/* ── COMPARISON TABLE ────────────────────────────── */
+/* ── COMPARISON ──────────────────────────────────── */
 #compare{background:var(--cream-d);}
+
+/* Desktop table */
+.compare-desktop{display:block;}
+.compare-mobile{display:none;}
+
 .compare-table-wrap{
-  margin-top:48px;border-radius:var(--r-l);
+  margin-top:36px;border-radius:var(--r-l);
   border:1px solid var(--border);overflow:hidden;
-  box-shadow:var(--shadow);
 }
-table{width:100%;border-collapse:collapse;}
+table{width:100%;border-collapse:collapse;table-layout:fixed;}
 thead{background:var(--green);color:#fff;}
-thead th{padding:16px 20px;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;text-align:left;}
-thead th:first-child{width:38%;}
-tbody tr{border-bottom:1px solid var(--border);transition:background 0.15s;}
-tbody tr:hover{background:#F5FBF7;}
+thead th{
+  padding:14px 16px;font-size:0.78rem;
+  font-weight:600;letter-spacing:0.05em;
+  text-transform:uppercase;text-align:left;
+  word-break:break-word;
+}
+thead th:first-child{width:36%;}
+tbody tr{border-bottom:1px solid var(--border);}
 tbody tr:last-child{border-bottom:none;}
-td{padding:14px 20px;font-size:0.88rem;color:var(--text-m);}
+td{padding:12px 16px;font-size:0.84rem;color:var(--text-m);word-break:break-word;}
 td:first-child{font-weight:500;color:var(--text);}
 .tick{color:var(--green);font-weight:700;}
 .cross{color:#C0392B;}
-.partial{color:var(--gold);}
+.partial{color:#C67C00;}
 .biobot-col{background:#F5FBF7;font-weight:600;color:var(--green)!important;}
+thead th.biobot-head{background:#1E5C3A;}
+
+/* Mobile comparison — card per feature */
+.compare-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--r);padding:16px;margin-bottom:10px;
+}
+.compare-card-feat{font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:12px;}
+.compare-card-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.compare-col-label{font-size:0.65rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:0.06em;color:var(--text-l);margin-bottom:4px;}
+.compare-col-val{font-size:0.82rem;}
+.compare-col-val.tick{color:var(--green);font-weight:600;}
+.compare-col-val.cross{color:#C0392B;}
+.compare-col-val.partial{color:#C67C00;}
+.biobot-mobile{background:#F0F9F4;border-radius:6px;padding:6px 8px;}
 
 /* ── SPECS ───────────────────────────────────────── */
 #specs{background:var(--white);}
 .specs-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:12px;margin-top:48px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;margin-top:40px;
 }
 .spec-row{
-  display:flex;align-items:flex-start;gap:16px;
-  padding:18px 20px;border-radius:var(--r);
-  border:1px solid var(--border);
-  background:var(--cream);
-  transition:all 0.2s;
+  display:flex;align-items:flex-start;gap:14px;
+  padding:14px 16px;border-radius:var(--r);
+  border:1px solid var(--border);background:var(--cream);
 }
-.spec-row:hover{border-color:var(--green-xl);background:#F5FBF7;}
 .spec-cat{
-  font-size:0.68rem;font-weight:600;letter-spacing:0.08em;
-  text-transform:uppercase;color:var(--text-l);
-  white-space:nowrap;min-width:110px;padding-top:2px;
+  font-size:0.66rem;font-weight:600;
+  letter-spacing:0.07em;text-transform:uppercase;
+  color:var(--text-l);white-space:nowrap;
+  min-width:90px;padding-top:2px;flex-shrink:0;
 }
-.spec-content{}
-.spec-name{font-size:0.9rem;font-weight:600;color:var(--text);margin-bottom:3px;}
-.spec-detail{font-size:0.8rem;color:var(--text-l);}
-
-/* ── TEAM ────────────────────────────────────────── */
-#team{background:var(--cream-d);}
-.team-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:24px;margin-top:56px;
-}
-.team-card{
-  background:var(--white);border-radius:var(--r-l);
-  padding:32px 24px;text-align:center;
-  border:1px solid var(--border);
-  transition:all 0.3s;
-}
-.team-card:hover{box-shadow:var(--shadow-h);transform:translateY(-3px);}
-.team-avatar{
-  width:72px;height:72px;border-radius:50%;
-  background:linear-gradient(135deg,#E8F5EE,#B7DFC9);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 16px;
-  font-family:'Playfair Display',serif;
-  font-size:1.5rem;font-weight:700;color:var(--green);
-  border:2px solid #B7DFC9;
-}
-.team-name{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px;}
-.team-role{font-size:0.8rem;color:var(--green);font-weight:500;margin-bottom:12px;}
-.team-inst{font-size:0.75rem;color:var(--text-l);line-height:1.5;}
-.mentor-card{
-  grid-column:span 4;
-  display:flex;align-items:center;gap:24px;
-  text-align:left;padding:28px 32px;
-}
-.mentor-avatar{
-  width:64px;height:64px;flex-shrink:0;
-  background:linear-gradient(135deg,#FFF3E0,#FFE0B2);
-  border:2px solid #FFD0A0;color:#E67E22;font-size:1.3rem;
-}
+.spec-name{font-size:0.88rem;font-weight:600;color:var(--text);margin-bottom:2px;}
+.spec-detail{font-size:0.77rem;color:var(--text-l);}
 
 /* ── AI SECTION ──────────────────────────────────── */
 #aichat{background:var(--green);}
 #aichat h2{color:#fff;}
 #aichat p{color:rgba(255,255,255,0.75);}
 .ai-wrapper{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:64px;align-items:center;margin-top:48px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;align-items:start;
+  margin-top:40px;
+}
+.ai-feature-list{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+.ai-feat{display:flex;align-items:flex-start;gap:10px;
+  color:rgba(255,255,255,0.85);font-size:0.88rem;}
+.ai-feat-tick{color:#4ADE80;flex-shrink:0;margin-top:1px;}
+.ai-tg-btn{
+  display:inline-block;margin-top:24px;
+  background:#fff;color:var(--green);
+  padding:11px 22px;border-radius:8px;
+  font-weight:600;font-size:0.85rem;
 }
 .ai-chat-ui{
   background:rgba(255,255,255,0.08);
   border:1px solid rgba(255,255,255,0.15);
-  border-radius:var(--r-l);padding:24px;
+  border-radius:var(--r-l);padding:20px;
 }
 .ai-header{
-  display:flex;align-items:center;gap:12px;
-  padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1);
-  margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  margin-bottom:14px;
 }
-.ai-dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;margin-left:auto;}
-.ai-name{color:#fff;font-weight:600;font-size:0.9rem;}
-.ai-sub{color:rgba(255,255,255,0.5);font-size:0.75rem;}
+.ai-dot{width:8px;height:8px;border-radius:50%;background:#4ADE80;margin-left:auto;flex-shrink:0;}
+.ai-name{color:#fff;font-weight:600;font-size:0.88rem;}
+.ai-sub{color:rgba(255,255,255,0.5);font-size:0.72rem;}
 .ai-msg{
-  background:rgba(255,255,255,0.1);
-  border-radius:10px;padding:12px 14px;
-  font-size:0.85rem;color:rgba(255,255,255,0.9);
-  margin-bottom:12px;line-height:1.6;
+  background:rgba(255,255,255,0.1);border-radius:8px;
+  padding:10px 12px;font-size:0.82rem;
+  color:rgba(255,255,255,0.9);margin-bottom:10px;line-height:1.55;
 }
-.quick-btns{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.quick-btns{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
 .qb{
-  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
-  color:rgba(255,255,255,0.85);font-size:0.75rem;
-  padding:6px 12px;border-radius:100px;cursor:pointer;
-  transition:all 0.2s;
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.85);
+  font-size:0.72rem;padding:5px 10px;
+  border-radius:100px;cursor:pointer;
+  font-family:'Inter',sans-serif;
 }
-.qb:hover{background:rgba(255,255,255,0.2);}
 .ai-input-row{display:flex;gap:8px;}
 .ai-input{
-  flex:1;background:rgba(255,255,255,0.12);
+  flex:1;min-width:0;
+  background:rgba(255,255,255,0.12);
   border:1px solid rgba(255,255,255,0.2);
-  color:#fff;padding:10px 14px;border-radius:8px;
-  font-size:0.85rem;font-family:'Inter',sans-serif;
-  outline:none;
+  color:#fff;padding:9px 12px;border-radius:8px;
+  font-size:0.82rem;font-family:'Inter',sans-serif;outline:none;
 }
 .ai-input::placeholder{color:rgba(255,255,255,0.35);}
 .ai-send{
   background:#fff;color:var(--green);
-  padding:10px 18px;border-radius:8px;border:none;
-  font-weight:600;font-size:0.8rem;cursor:pointer;
-  transition:all 0.2s;
+  padding:9px 16px;border-radius:8px;border:none;
+  font-weight:600;font-size:0.78rem;cursor:pointer;
+  font-family:'Inter',sans-serif;white-space:nowrap;flex-shrink:0;
 }
-.ai-send:hover{background:#E8F5EE;}
 .ai-resp{
-  margin-top:12px;min-height:40px;
-  background:rgba(255,255,255,0.06);
-  border-radius:8px;padding:12px 14px;
-  font-size:0.82rem;color:rgba(255,255,255,0.75);
-  line-height:1.6;
+  margin-top:10px;min-height:38px;
+  background:rgba(255,255,255,0.06);border-radius:8px;
+  padding:10px 12px;font-size:0.8rem;
+  color:rgba(255,255,255,0.75);line-height:1.55;
 }
+
+/* ── TEAM ────────────────────────────────────────── */
+#team{background:var(--cream-d);}
+.team-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;margin-top:48px;
+}
+.team-card{
+  background:var(--white);border-radius:var(--r-l);
+  padding:24px 18px;text-align:center;
+  border:1px solid var(--border);
+}
+.team-avatar{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,#E8F5EE,#B7DFC9);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 14px;
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;font-weight:700;color:var(--green);
+  border:2px solid #B7DFC9;
+}
+.team-name{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:3px;}
+.team-role{font-size:0.78rem;color:var(--green);font-weight:500;margin-bottom:10px;}
+.team-inst{font-size:0.72rem;color:var(--text-l);line-height:1.5;}
+.team-info-strip{
+  grid-column:span 4;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.ti-cell{
+  background:#E8F5EE;border-radius:var(--r);padding:12px 14px;
+}
+.ti-label{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-l);margin-bottom:4px;}
+.ti-val{font-size:0.85rem;color:var(--text);font-weight:500;word-break:break-word;}
 
 /* ── FAQ ─────────────────────────────────────────── */
 #faq{background:var(--white);}
-.faq-list{margin-top:48px;display:flex;flex-direction:column;gap:12px;max-width:780px;}
+.faq-list{margin-top:40px;display:flex;flex-direction:column;gap:10px;}
 .faq-item{border:1px solid var(--border);border-radius:var(--r);}
 .faq-q{
   width:100%;background:none;border:none;
   display:flex;align-items:center;justify-content:space-between;
-  padding:18px 22px;cursor:pointer;
-  font-size:0.9rem;font-weight:500;color:var(--text);
-  text-align:left;font-family:'Inter',sans-serif;
-  transition:color 0.2s;
+  padding:15px 18px;cursor:pointer;
+  font-size:0.88rem;font-weight:500;color:var(--text);
+  text-align:left;font-family:'Inter',sans-serif;gap:12px;
 }
-.faq-q:hover{color:var(--green);}
-.faq-icon{font-size:1.2rem;color:var(--green);flex-shrink:0;transition:transform 0.3s;}
-.faq-a{
-  display:none;padding:0 22px 18px;
-  font-size:0.85rem;color:var(--text-l);line-height:1.75;
-}
+.faq-icon{font-size:1.1rem;color:var(--green);flex-shrink:0;transition:transform 0.3s;}
+.faq-a{display:none;padding:0 18px 15px;font-size:0.83rem;color:var(--text-l);line-height:1.7;}
 .faq-item.open .faq-a{display:block;}
 .faq-item.open .faq-icon{transform:rotate(45deg);}
 .faq-item.open{border-color:var(--green-xl);}
 
 /* ── CONTACT ─────────────────────────────────────── */
 #contact{background:var(--cream-d);}
-.contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:64px;margin-top:48px;}
-.contact-info{display:flex;flex-direction:column;gap:24px;}
-.ci-item{display:flex;align-items:flex-start;gap:14px;}
-.ci-icon{
-  width:40px;height:40px;border-radius:8px;
-  background:#E8F5EE;display:flex;align-items:center;
-  justify-content:center;font-size:1.1rem;flex-shrink:0;
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1.4fr;
+  gap:48px;margin-top:40px;
 }
-.ci-label{font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-l);margin-bottom:3px;}
-.ci-val{font-size:0.9rem;color:var(--text);font-weight:500;}
-.contact-form{display:flex;flex-direction:column;gap:14px;}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.form-field label{display:block;font-size:0.75rem;font-weight:600;color:var(--text-m);margin-bottom:6px;letter-spacing:0.04em;}
+.contact-info{display:flex;flex-direction:column;gap:20px;}
+.ci-item{display:flex;align-items:flex-start;gap:12px;}
+.ci-icon{
+  width:38px;height:38px;border-radius:8px;
+  background:#E8F5EE;display:flex;align-items:center;
+  justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.ci-label{font-size:0.68rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:0.07em;color:var(--text-l);margin-bottom:2px;}
+.ci-val{font-size:0.88rem;color:var(--text);font-weight:500;}
+.contact-form{display:flex;flex-direction:column;gap:12px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-field label{display:block;font-size:0.72rem;font-weight:600;
+  color:var(--text-m);margin-bottom:5px;letter-spacing:0.03em;}
 .form-field input,
 .form-field textarea{
-  width:100%;padding:11px 14px;
+  width:100%;padding:10px 12px;
   border:1px solid var(--border);border-radius:8px;
-  font-size:0.88rem;font-family:'Inter',sans-serif;
-  color:var(--text);background:var(--white);
-  transition:border-color 0.2s;outline:none;
+  font-size:0.86rem;font-family:'Inter',sans-serif;
+  color:var(--text);background:var(--white);outline:none;
 }
-.form-field input:focus,
-.form-field textarea:focus{border-color:var(--green);}
-.form-field textarea{resize:vertical;min-height:120px;}
+.form-field input:focus,.form-field textarea:focus{border-color:var(--green);}
+.form-field textarea{resize:vertical;min-height:110px;}
 .form-submit{
   background:var(--green);color:#fff;
-  padding:13px 28px;border:none;border-radius:8px;
-  font-size:0.88rem;font-weight:600;cursor:pointer;
-  font-family:'Inter',sans-serif;
-  transition:all 0.25s;align-self:flex-start;
-  box-shadow:0 4px 14px rgba(45,106,79,0.25);
+  padding:12px 24px;border:none;border-radius:8px;
+  font-size:0.86rem;font-weight:600;cursor:pointer;
+  font-family:'Inter',sans-serif;align-self:flex-start;
 }
-.form-submit:hover{background:var(--green-l);transform:translateY(-1px);}
-#form-msg{font-size:0.82rem;color:var(--green);font-weight:500;min-height:20px;}
-
-/* ── SDG STRIP ───────────────────────────────────── */
-.sdg-strip{
-  background:var(--white);padding:40px 0;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-.sdg-items{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:16px;}
-.sdg-badge{
-  display:flex;align-items:center;gap:8px;
-  padding:8px 16px;border-radius:100px;
-  border:1px solid var(--border);font-size:0.78rem;
-  font-weight:600;color:var(--text-m);
-  background:var(--cream);
-}
-.sdg-badge span{font-weight:700;color:var(--green);}
+#form-msg{font-size:0.8rem;color:var(--green);font-weight:500;min-height:18px;}
 
 /* ── FOOTER ──────────────────────────────────────── */
 footer{
-  background:var(--text);color:rgba(255,255,255,0.6);
-  padding:48px 0 32px;
+  background:var(--text);color:rgba(255,255,255,0.55);
+  padding:40px 0 24px;
 }
-.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;}
-.footer-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:8px;}
-.footer-tagline{font-size:0.82rem;color:rgba(255,255,255,0.4);}
-.footer-links{display:flex;gap:24px;flex-wrap:wrap;}
-.footer-links a{font-size:0.82rem;color:rgba(255,255,255,0.5);transition:color 0.2s;}
-.footer-links a:hover{color:#fff;}
+.footer-top{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;margin-bottom:32px;
+  flex-wrap:wrap;gap:24px;
+}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:6px;}
+.footer-tagline{font-size:0.78rem;color:rgba(255,255,255,0.35);}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.45);}
 .footer-bottom{
   display:flex;justify-content:space-between;align-items:center;
-  padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);
-  font-size:0.75rem;
+  padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);
+  font-size:0.72rem;flex-wrap:wrap;gap:8px;
 }
-.last-updated{color:rgba(255,255,255,0.3);}
 
-/* ── RESPONSIVE ──────────────────────────────────── */
+/* ════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS — MOBILE FIRST
+   ════════════════════════════════════════════════════ */
+
+/* ── TABLET 1024px ─────────────────────────────────── */
 @media(max-width:1024px){
-  #home{grid-template-columns:1fr;}
+  .hero-inner{grid-template-columns:1fr;}
   .hero-visual{display:none;}
-  .hero-content{padding:120px 24px 80px;}
   .feature-cards{grid-template-columns:repeat(2,1fr);}
-  .team-grid{grid-template-columns:repeat(2,1fr);}
-  .mentor-card{grid-column:span 2;}
-  .grid-2{grid-template-columns:1fr;gap:40px;}
-  .steps{grid-template-columns:1fr;gap:24px;}
+  .steps{grid-template-columns:1fr;gap:20px;}
   .steps::before{display:none;}
+  .step{display:grid;grid-template-columns:60px 1fr;gap:16px;text-align:left;}
+  .step-num{margin:0;}
   .ai-wrapper{grid-template-columns:1fr;}
   .contact-grid{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:repeat(2,1fr);}
+  .team-info-strip{grid-column:span 2;grid-template-columns:repeat(2,1fr);}
+  .impact-grid{grid-template-columns:repeat(2,1fr);}
   .specs-grid{grid-template-columns:1fr;}
-  .impact-grid{grid-template-columns:1fr;}
-  .footer-top{flex-direction:column;gap:24px;}
-  .footer-bottom{flex-direction:column;gap:8px;text-align:center;}
+  .compare-desktop{display:block;}
+  .compare-mobile{display:none;}
 }
+
+/* ── MOBILE 640px ──────────────────────────────────── */
 @media(max-width:640px){
-  section{padding:64px 0;}
-  h1{font-size:2.1rem;}
-  h2{font-size:1.6rem;}
+  section{padding:52px 0;}
+  .container{padding:0 16px;}
+  h1{font-size:1.85rem;}
+  h2{font-size:1.5rem;}
+
+  /* Nav */
   .nav-links{display:none;}
-  .feature-cards{grid-template-columns:1fr;}
-  .team-grid{grid-template-columns:1fr 1fr;}
-  .mentor-card{grid-column:span 2;flex-direction:column;}
-  .grid-3,.grid-4{grid-template-columns:1fr 1fr;}
-  .impact-grid{grid-template-columns:1fr 1fr;}
+  nav{padding:0 16px;}
+
+  /* Hero */
+  #home{padding:80px 0 48px;}
+  .hero-tag{font-size:0.65rem;padding:4px 10px;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .hero-stat-num{font-size:1.2rem;}
+  .hero-actions{flex-direction:column;}
+  .btn-primary,.btn-ghost{width:100%;text-align:center;justify-content:center;}
+
+  /* Ticker */
+  .ticker{padding:10px 0;}
+  .ticker-track{font-size:0.72rem;gap:28px;}
+
+  /* Impact — single column on mobile */
+  .impact-grid{
+    grid-template-columns:1fr;
+    border-radius:var(--r);
+  }
+  .impact-num{font-size:2rem;}
+  .impact-cell{padding:24px 20px;}
+
+  /* SDG badges — wrap naturally */
+  .sdg-items{justify-content:flex-start;}
+  .sdg-badge{font-size:0.7rem;padding:5px 10px;}
+
+  /* Feature cards — single column */
+  .feature-cards{grid-template-columns:1fr;gap:12px;margin-top:32px;}
+
+  /* Steps — stack vertically */
+  .steps{grid-template-columns:1fr;gap:16px;margin-top:32px;}
+  .steps::before{display:none;}
+  .step{
+    display:flex;align-items:flex-start;gap:14px;
+    text-align:left;padding:0;
+  }
+  .step-num{
+    width:48px;height:48px;flex-shrink:0;
+    font-size:0.9rem;margin:0;
+  }
+  .step-title{font-size:0.88rem;}
+
+  /* Comparison — hide desktop table, show mobile cards */
+  .compare-desktop{display:none;}
+  .compare-mobile{display:block;margin-top:28px;}
+  .compare-card-cols{grid-template-columns:1fr 1fr 1fr;}
+
+  /* Specs — single column */
+  .specs-grid{grid-template-columns:1fr;gap:8px;margin-top:28px;}
+  .spec-row{padding:12px 14px;}
+  .spec-cat{min-width:80px;font-size:0.62rem;}
+
+  /* AI section */
+  .ai-wrapper{grid-template-columns:1fr;gap:32px;}
+  .ai-tg-btn{width:100%;text-align:center;display:block;}
+
+  /* Team — 2 col on mobile */
+  .team-grid{grid-template-columns:1fr 1fr;gap:12px;margin-top:32px;}
+  .team-info-strip{
+    grid-column:span 2;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .team-avatar{width:52px;height:52px;font-size:1.1rem;}
+  .team-name{font-size:0.82rem;}
+  .team-role{font-size:0.72rem;}
+  .team-inst{font-size:0.66rem;}
+
+  /* FAQ */
+  .faq-list{margin-top:28px;gap:8px;}
+  .faq-q{font-size:0.84rem;padding:13px 14px;}
+
+  /* Contact */
+  .contact-grid{grid-template-columns:1fr;gap:32px;}
   .form-row{grid-template-columns:1fr;}
+
+  /* Footer */
+  .footer-top{flex-direction:column;gap:16px;}
+  .footer-bottom{flex-direction:column;gap:6px;}
+  .footer-links{gap:14px;}
+}
+
+/* ── VERY SMALL 380px ─────────────────────────────── */
+@media(max-width:380px){
+  h1{font-size:1.65rem;}
+  .hero-stats{grid-template-columns:repeat(2,1fr);}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .team-info-strip{grid-template-columns:1fr 1fr;}
+  .impact-num{font-size:1.8rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- ── NAV ─────────────────────────────────────────── -->
+<!-- NAV -->
 <nav>
   <div class="nav-logo">Bio<span>Bot</span></div>
   <ul class="nav-links">
@@ -532,72 +637,56 @@ footer{
   <a href="#aichat" class="nav-cta">Ask AI →</a>
 </nav>
 
-<!-- ── HERO ────────────────────────────────────────── -->
+<!-- HERO -->
 <section id="home">
-  <div class="hero-bg-ring"></div>
-  <div class="hero-bg-ring2"></div>
-  <div class="hero-content">
-    <div class="hero-tag">
-      <div class="hero-tag-dot"></div>
-      Solar-Powered · IoT-Enabled · AI-Assisted
-    </div>
-    <h1 class="hero-title">
-      Smart Composting,<br><em>Finally Done Right.</em>
-    </h1>
-    <p class="hero-sub">
-      BioBot monitors your kitchen waste 24/7, mixes it automatically,
-      and tells you exactly what your compost needs — powered entirely by sunlight.
-    </p>
-    <div class="hero-actions">
-      <a href="#features" class="btn-primary">See How It Works</a>
-      <a href="#aichat" class="btn-ghost">Ask BioBot AI <span>→</span></a>
-    </div>
-    <div class="hero-stats">
+  <div class="container">
+    <div class="hero-inner">
       <div>
-        <div class="hero-stat-num">₹12.5k</div>
-        <div class="hero-stat-lbl">Build Cost</div>
+        <div class="hero-tag">
+          <div class="hero-tag-dot"></div>
+          Solar-Powered · IoT-Enabled · AI-Assisted
+        </div>
+        <h1 class="hero-title">Smart Composting,<br><em>Finally Done Right.</em></h1>
+        <p class="hero-sub">BioBot monitors your kitchen waste 24/7, mixes it automatically, and tells you exactly what your compost needs — powered entirely by sunlight.</p>
+        <div class="hero-actions">
+          <a href="#features" class="btn-primary">See How It Works</a>
+          <a href="#aichat" class="btn-ghost">Ask BioBot AI →</a>
+        </div>
+        <div class="hero-stats">
+          <div><div class="hero-stat-num">₹12.5k</div><div class="hero-stat-lbl">Build Cost</div></div>
+          <div><div class="hero-stat-num">60d</div><div class="hero-stat-lbl">Full Cycle</div></div>
+          <div><div class="hero-stat-num">0 kWh</div><div class="hero-stat-lbl">Grid Power</div></div>
+          <div><div class="hero-stat-num">24/7</div><div class="hero-stat-lbl">Monitored</div></div>
+        </div>
       </div>
-      <div>
-        <div class="hero-stat-num">60d</div>
-        <div class="hero-stat-lbl">Full Cycle</div>
+      <div class="hero-visual">
+        <div class="hero-img-card">
+          <img src="1779478274705.png" alt="BioBot Smart Composter" onerror="this.style.cssText='background:#E8F5EE;height:180px;border-radius:8px;'">
+          <div class="hero-card-stats">
+            <div><div class="hcs-val">52°C</div><div class="hcs-lbl">Temp</div></div>
+            <div><div class="hcs-val">64%</div><div class="hcs-lbl">Humid</div></div>
+            <div><div class="hcs-val">D18</div><div class="hcs-lbl">Day</div></div>
+            <div><div class="hcs-val" style="color:#2D6A4F">✓</div><div class="hcs-lbl">Health</div></div>
+          </div>
+          <div class="hero-card-badge">☀️ Solar Charging · Auto-Mix Active</div>
+        </div>
       </div>
-      <div>
-        <div class="hero-stat-num">0kWh</div>
-        <div class="hero-stat-lbl">Grid Power</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">24/7</div>
-        <div class="hero-stat-lbl">Monitored</div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="hero-img-card">
-      <img src="1779478274705.png" alt="BioBot Smart Composter" onerror="this.style.background='#E8F5EE';this.style.height='220px';this.alt='BioBot';">
-      <div class="hero-card-stats">
-        <div><div class="hcs-val">52°C</div><div class="hcs-lbl">Temp</div></div>
-        <div><div class="hcs-val">64%</div><div class="hcs-lbl">Humid</div></div>
-        <div><div class="hcs-val">D18</div><div class="hcs-lbl">Day</div></div>
-        <div><div class="hcs-val" style="color:#2D6A4F">✓</div><div class="hcs-lbl">Health</div></div>
-      </div>
-      <div class="hero-card-badge">☀️ Solar Charging · Auto-Mix Active</div>
     </div>
   </div>
 </section>
 
-<!-- ── TICKER ─────────────────────────────────────── -->
+<!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <span>☀️ Solar Powered</span> · <span>Blynk IoT Dashboard</span> · <span>AI Telegram Assistant</span> · <span>Anna University · Tiruchirappalli</span> · <span>SDG 11 · 12 · 7 · 3</span> · <span>60-Day Cycle</span> · <span>Zero Grid Power</span> · <span>Team BioBloom</span> ·
-    <span>☀️ Solar Powered</span> · <span>Blynk IoT Dashboard</span> · <span>AI Telegram Assistant</span> · <span>Anna University · Tiruchirappalli</span> · <span>SDG 11 · 12 · 7 · 3</span> · <span>60-Day Cycle</span> · <span>Zero Grid Power</span> · <span>Team BioBloom</span> ·
+    <span>☀️ Solar Powered</span> · <span>Blynk IoT Dashboard</span> · <span>AI Telegram Bot</span> · <span>Anna University, Trichy</span> · <span>SDG 11 · 12 · 7 · 3</span> · <span>60-Day Cycle</span> · <span>Zero Grid Power</span> · <span>Team BioBloom</span> · <span>☀️ Solar Powered</span> · <span>Blynk IoT Dashboard</span> · <span>AI Telegram Bot</span> · <span>Anna University, Trichy</span> · <span>SDG 11 · 12 · 7 · 3</span> · <span>60-Day Cycle</span> · <span>Zero Grid Power</span> · <span>Team BioBloom</span> ·
   </div>
 </div>
 
-<!-- ── IMPACT ─────────────────────────────────────── -->
+<!-- IMPACT -->
 <section id="impact">
   <div class="container">
     <p class="eyebrow">Why It Matters</p>
-    <h2 style="margin-top:12px;max-width:520px;">Real Impact.<br><em class="serif-i">Real Numbers.</em></h2>
+    <h2 style="margin-top:10px;">Real Impact.<br><em class="serif-i">Real Numbers.</em></h2>
     <div class="impact-grid">
       <div class="impact-cell">
         <div class="impact-num">60%</div>
@@ -605,14 +694,14 @@ footer{
         <p class="impact-desc">Over half of what Indian families discard every day could become rich compost instead of landfill methane.</p>
       </div>
       <div class="impact-cell">
-        <div class="impact-num">1,500kg</div>
+        <div class="impact-num">1,500 kg</div>
         <div class="impact-lbl">CO₂e Avoided Per Year</div>
         <p class="impact-desc">Each BioBot unit prevents an estimated 1,500 kg of CO₂-equivalent emissions annually from organic landfill decomposition.</p>
       </div>
       <div class="impact-cell">
         <div class="impact-num">45–60d</div>
         <div class="impact-lbl">Waste to Fertiliser</div>
-        <p class="impact-desc">Traditional composting takes 3–6 months. BioBot's sensor-guided conditions and auto-aeration complete the cycle in 45–60 days.</p>
+        <p class="impact-desc">Traditional composting takes 3–6 months. BioBot's sensor-guided conditions complete the cycle in 45–60 days.</p>
       </div>
       <div class="impact-cell">
         <div class="impact-num">₹12.5k</div>
@@ -622,7 +711,7 @@ footer{
       <div class="impact-cell">
         <div class="impact-num">4</div>
         <div class="impact-lbl">Sensors Working Together</div>
-        <p class="impact-desc">DHT22, MQ-135, capacitive moisture probe, and RTC DS3231 give complete visibility into every phase of decomposition.</p>
+        <p class="impact-desc">DHT22, MQ-135, capacitive moisture probe, and DS3231 RTC give complete visibility into every phase of decomposition.</p>
       </div>
       <div class="impact-cell">
         <div class="impact-num">0 kWh</div>
@@ -633,7 +722,7 @@ footer{
   </div>
 </section>
 
-<!-- ── SDG STRIP ──────────────────────────────────── -->
+<!-- SDG STRIP -->
 <div class="sdg-strip">
   <div class="container">
     <div class="sdg-items">
@@ -647,207 +736,226 @@ footer{
   </div>
 </div>
 
-<!-- ── FEATURES ───────────────────────────────────── -->
+<!-- FEATURES -->
 <section id="features">
   <div class="container">
-    <div class="features-intro">
-      <p class="eyebrow">Core Systems</p>
-      <h2 style="margin-top:12px;">Everything Your<br><em class="serif-i">Compost Needs.</em></h2>
-      <p style="margin-top:16px;">Eight integrated systems work together to make composting automatic, intelligent, and effortless.</p>
-    </div>
+    <p class="eyebrow">Core Systems</p>
+    <h2 style="margin-top:10px;">Everything Your<br><em class="serif-i">Compost Needs.</em></h2>
+    <p style="margin-top:14px;max-width:500px;">Eight integrated systems work together to make composting automatic, intelligent, and effortless.</p>
     <div class="feature-cards">
-      <div class="fc">
-        <div class="fc-icon">☀️</div>
-        <div class="fc-title">Solar Powered</div>
-        <p class="fc-desc">5.5V solar panel charges 18650 battery via TP4056. 1N5819 diode prevents reverse drain at night. Runs all systems 24/7.</p>
-        <span class="fc-tag">Off-Grid</span>
-      </div>
-      <div class="fc">
-        <div class="fc-icon">🌡️</div>
-        <div class="fc-title">DHT22 Sensor</div>
-        <p class="fc-desc">Temperature ±0.5°C and humidity from a single sensor. Monitors the 40–65°C thermophilic zone and 50–70% humidity window.</p>
-        <span class="fc-tag">Dual Sensing</span>
-      </div>
-      <div class="fc">
-        <div class="fc-icon">💨</div>
-        <div class="fc-title">MQ-135 Gas</div>
-        <p class="fc-desc">Detects ammonia and CO₂ spikes. 48-hour warmup guard prevents false alerts. Active after sensor stabilisation.</p>
-        <span class="fc-tag">Real-Time</span>
-      </div>
-      <div class="fc">
-        <div class="fc-icon">🌊</div>
-        <div class="fc-title">Moisture Probe</div>
-        <p class="fc-desc">Capacitive sensor measures compost pile wetness without corrosion. Maps raw ADC to 0–100% scale. Ideal: 50–60%.</p>
-        <span class="fc-tag">Calibrated</span>
-      </div>
-      <div class="fc">
-        <div class="fc-icon">⚙️</div>
-        <div class="fc-title">Auto Bidirectional Mix</div>
-        <p class="fc-desc">DC gear motor runs every 8 hours — 30 seconds forward, 30 seconds backward. Trigger manually via Blynk anytime.</p>
-        <span class="fc-tag">Auto-Aeration</span>
-      </div>
-      <div class="fc">
-        <div class="fc-icon">📱</div>
-        <div class="fc-title">Blynk IoT Dashboard</div>
-        <p class="fc-desc">Live sensor gauges, day count, health status, manual mix button, and push notifications — all in the free Blynk app.</p>
-        <span class="fc-tag">Live Monitoring</span>
-      </div>
-      <div class="fc">
-        <div class="fc-icon">🖥️</div>
-        <div class="fc-title">OLED Local Display</div>
-        <p class="fc-desc">6-page rotating display: welcome, day counter, sensors, system status, date/time. Works completely offline.</p>
-        <span class="fc-tag">Always-On</span>
-      </div>
-      <div class="fc">
-        <div class="fc-icon">🤖</div>
-        <div class="fc-title">AI Telegram Bot</div>
-        <p class="fc-desc">Cloud Python bot on Railway answers any composting question via AI — independent of ESP32, running 24/7.</p>
-        <span class="fc-tag">Cloud AI</span>
-      </div>
+      <div class="fc"><div class="fc-icon">☀️</div><div class="fc-title">Solar Powered</div><p class="fc-desc">5.5V panel charges 18650 battery via TP4056. 1N5819 diode prevents reverse drain. Runs all systems 24/7.</p><span class="fc-tag">Off-Grid</span></div>
+      <div class="fc"><div class="fc-icon">🌡️</div><div class="fc-title">DHT22 Sensor</div><p class="fc-desc">Temperature ±0.5°C and humidity from one sensor. Monitors the 40–65°C thermophilic zone and 50–70% humidity window.</p><span class="fc-tag">Dual Sensing</span></div>
+      <div class="fc"><div class="fc-icon">💨</div><div class="fc-title">MQ-135 Gas</div><p class="fc-desc">Detects ammonia and CO₂ spikes. 48-hour warmup guard prevents false alerts. Active after sensor stabilisation.</p><span class="fc-tag">Real-Time</span></div>
+      <div class="fc"><div class="fc-icon">🌊</div><div class="fc-title">Moisture Probe</div><p class="fc-desc">Capacitive sensor measures compost pile wetness without corrosion. Maps raw ADC to 0–100% scale. Ideal: 50–60%.</p><span class="fc-tag">Calibrated</span></div>
+      <div class="fc"><div class="fc-icon">⚙️</div><div class="fc-title">Auto Bidirectional Mix</div><p class="fc-desc">DC gear motor runs every 8 hours — 30s forward, 30s backward. Trigger manually via Blynk anytime.</p><span class="fc-tag">Auto-Aeration</span></div>
+      <div class="fc"><div class="fc-icon">📱</div><div class="fc-title">Blynk Dashboard</div><p class="fc-desc">Live gauges, day count, health status, manual mix button, and push notifications — all in the free Blynk app.</p><span class="fc-tag">Live Monitoring</span></div>
+      <div class="fc"><div class="fc-icon">🖥️</div><div class="fc-title">OLED Display</div><p class="fc-desc">6-page rotating display showing sensors, day counter, system status, and date/time. Works completely offline.</p><span class="fc-tag">Always-On</span></div>
+      <div class="fc"><div class="fc-icon">🤖</div><div class="fc-title">AI Telegram Bot</div><p class="fc-desc">Cloud Python bot on Railway answers composting questions in English and Tamil — independent of ESP32, 24/7.</p><span class="fc-tag">Cloud AI</span></div>
     </div>
   </div>
 </section>
 
-<!-- ── HOW IT WORKS ───────────────────────────────── -->
+<!-- HOW IT WORKS -->
 <section id="how">
   <div class="container">
     <p class="eyebrow">Process</p>
-    <h2 style="margin-top:12px;">Simple. Smart.<br><em class="serif-i">Automatic.</em></h2>
-    <p style="margin-top:16px;max-width:520px;">You add kitchen scraps. BioBot handles the rest — from the first microbial bloom to harvest day.</p>
+    <h2 style="margin-top:10px;">Simple. Smart.<br><em class="serif-i">Automatic.</em></h2>
+    <p style="margin-top:14px;max-width:480px;">You add kitchen scraps. BioBot handles the rest — from the first microbial bloom to harvest day.</p>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <div class="step-title">Add Kitchen Scraps</div>
-        <p class="step-desc">Drop vegetable peels, fruit waste, coffee grounds into the basket. Cover with equal dry cocopeat.</p>
-        <div class="step-tag">🥦 Greens + Browns 1:1</div>
+        <div>
+          <div class="step-title">Add Kitchen Scraps</div>
+          <p class="step-desc">Vegetable peels, fruit waste, coffee grounds. Cover with equal dry cocopeat.</p>
+          <div class="step-tag">🥦 Greens + Browns 1:1</div>
+        </div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <div class="step-title">Sensors Monitor 24/7</div>
-        <p class="step-desc">DHT22, MQ-135, and moisture probe read conditions every 30 seconds. OLED and Blynk update live.</p>
-        <div class="step-tag">📡 Continuous Sensing</div>
+        <div>
+          <div class="step-title">Sensors Monitor 24/7</div>
+          <p class="step-desc">DHT22, MQ-135, and moisture probe read every 30 seconds. OLED and Blynk update live.</p>
+          <div class="step-tag">📡 Continuous Sensing</div>
+        </div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <div class="step-title">Motor Mixes Auto</div>
-        <p class="step-desc">Every 8 hours, the paddle runs 30 seconds forward, pause, 30 seconds backward — full aeration.</p>
-        <div class="step-tag">⚙️ Bidirectional</div>
+        <div>
+          <div class="step-title">Motor Mixes Auto</div>
+          <p class="step-desc">Every 8 hours — 30s forward, pause, 30s backward. Full aeration, zero manual effort.</p>
+          <div class="step-tag">⚙️ Bidirectional</div>
+        </div>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <div class="step-title">Alerts Your Phone</div>
-        <p class="step-desc">When temp spikes or gas rises, Blynk pushes an instant notification with what to do. Zero guesswork.</p>
-        <div class="step-tag">🔔 Push Alerts</div>
+        <div>
+          <div class="step-title">Alerts Your Phone</div>
+          <p class="step-desc">When sensors go out of range, Blynk sends a push notification with what to do.</p>
+          <div class="step-tag">🔔 Push Alerts</div>
+        </div>
       </div>
       <div class="step">
         <div class="step-num">05</div>
-        <div class="step-title">Harvest at Day 60</div>
-        <p class="step-desc">BioBot notifies you when compost is ready. Dark, crumbly, earthy-smelling compost — perfect for plants.</p>
-        <div class="step-tag">🌱 Ready to Use</div>
+        <div>
+          <div class="step-title">Harvest at Day 60</div>
+          <p class="step-desc">BioBot notifies you when compost is ready. Dark, crumbly, earthy — perfect for plants.</p>
+          <div class="step-tag">🌱 Ready to Use</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── VIDEO ──────────────────────────────────────── -->
+<!-- VIDEO -->
 <section id="video">
   <div class="container">
     <p class="eyebrow" style="color:rgba(255,255,255,0.5);">Demo</p>
-    <h2 style="color:#fff;margin-top:12px;">Watch BioBot<br><em>In Action.</em></h2>
-    <p style="margin-top:12px;">Live sensors, auto-mixing, Blynk dashboard, and AI chatbot — all in one demo.</p>
+    <h2 style="margin-top:10px;">Watch BioBot<br><em>In Action.</em></h2>
+    <p style="margin-top:10px;">Live sensors, auto-mixing, Blynk dashboard, and AI chatbot — all in one demo.</p>
     <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/SeNpzFcjS8Q"
+      <iframe src="https://www.youtube.com/embed/SeNpzFcjS8Q"
         title="BioBot Demo Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
+        allowfullscreen></iframe>
     </div>
   </div>
 </section>
 
-<!-- ── COMPARISON ─────────────────────────────────── -->
+<!-- COMPARISON -->
 <section id="compare">
   <div class="container">
     <p class="eyebrow">Comparison</p>
-    <h2 style="margin-top:12px;">BioBot vs<br><em class="serif-i">The Rest.</em></h2>
-    <div class="compare-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Feature</th>
-            <th style="background:#1E5C3A;">🌿 BioBot</th>
-            <th>Traditional Compost</th>
-            <th>Commercial Smart</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Solar Powered</td><td class="biobot-col tick">✓ Full solar</td><td class="cross">✗</td><td class="cross">✗</td></tr>
-          <tr><td>IoT Monitoring</td><td class="biobot-col tick">✓ Blynk App</td><td class="cross">✗</td><td class="partial">~ Some</td></tr>
-          <tr><td>AI Chatbot</td><td class="biobot-col tick">✓ Cloud AI</td><td class="cross">✗</td><td class="cross">✗</td></tr>
-          <tr><td>Auto Mixing Motor</td><td class="biobot-col tick">✓ Bidirectional</td><td class="cross">✗ Manual</td><td class="partial">~ Some</td></tr>
-          <tr><td>Multi-Sensor System</td><td class="biobot-col tick">✓ 3 Sensors</td><td class="cross">✗</td><td class="partial">~ 1–2</td></tr>
-          <tr><td>Push Notifications</td><td class="biobot-col tick">✓ Instant</td><td class="cross">✗</td><td class="partial">~ Some</td></tr>
-          <tr><td>OLED Local Display</td><td class="biobot-col tick">✓ 6 Pages</td><td class="cross">✗</td><td class="partial">~ Rare</td></tr>
-          <tr><td>Offline Operation</td><td class="biobot-col tick">✓ Full</td><td class="tick">✓</td><td class="cross">✗</td></tr>
-          <tr><td>Cost</td><td class="biobot-col" style="color:#2D6A4F!important;font-weight:700;">₹12,500</td><td>₹500–2,000</td><td>₹25,000–80,000</td></tr>
-          <tr><td>Cycle Duration</td><td class="biobot-col" style="color:#2D6A4F!important;font-weight:700;">45–60 Days</td><td>3–6 Months</td><td>7–60 Days</td></tr>
-          <tr><td>SDG Aligned</td><td class="biobot-col tick">✓ 6 SDGs</td><td class="partial">~ Partial</td><td class="partial">~ Partial</td></tr>
-        </tbody>
-      </table>
+    <h2 style="margin-top:10px;">BioBot vs<br><em class="serif-i">The Rest.</em></h2>
+
+    <!-- Desktop table -->
+    <div class="compare-desktop">
+      <div class="compare-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th class="biobot-head">🌿 BioBot</th>
+              <th>Traditional Compost</th>
+              <th>Commercial Smart</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Solar Powered</td><td class="biobot-col tick">✓ Full solar</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+            <tr><td>IoT Monitoring</td><td class="biobot-col tick">✓ Blynk App</td><td class="cross">✗</td><td class="partial">~ Some</td></tr>
+            <tr><td>AI Chatbot</td><td class="biobot-col tick">✓ Cloud AI</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+            <tr><td>Auto Bidirectional Mix</td><td class="biobot-col tick">✓ 30s + 30s</td><td class="cross">✗ Manual</td><td class="partial">~ Some</td></tr>
+            <tr><td>Multi-Sensor System</td><td class="biobot-col tick">✓ 3 Sensors</td><td class="cross">✗</td><td class="partial">~ 1–2</td></tr>
+            <tr><td>Push Notifications</td><td class="biobot-col tick">✓ Instant</td><td class="cross">✗</td><td class="partial">~ Some</td></tr>
+            <tr><td>OLED Offline Display</td><td class="biobot-col tick">✓ 6 Pages</td><td class="cross">✗</td><td class="partial">~ Rare</td></tr>
+            <tr><td>Offline Operation</td><td class="biobot-col tick">✓ Complete</td><td class="tick">✓</td><td class="cross">✗</td></tr>
+            <tr><td>Cost</td><td class="biobot-col" style="color:#2D6A4F!important;font-weight:700;">₹12,500</td><td>₹500–2,000</td><td>₹25,000–80,000</td></tr>
+            <tr><td>Cycle Duration</td><td class="biobot-col" style="color:#2D6A4F!important;font-weight:700;">45–60 Days</td><td>3–6 Months</td><td>7–60 Days</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Mobile cards (hidden on desktop) -->
+    <div class="compare-mobile">
+      <div class="compare-card">
+        <div class="compare-card-feat">Solar Powered</div>
+        <div class="compare-card-cols">
+          <div class="biobot-mobile"><div class="compare-col-label">BioBot</div><div class="compare-col-val tick">✓ Full Solar</div></div>
+          <div><div class="compare-col-label">Traditional</div><div class="compare-col-val cross">✗ None</div></div>
+          <div><div class="compare-col-label">Commercial</div><div class="compare-col-val cross">✗ Grid Only</div></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-feat">IoT Monitoring</div>
+        <div class="compare-card-cols">
+          <div class="biobot-mobile"><div class="compare-col-label">BioBot</div><div class="compare-col-val tick">✓ Blynk App</div></div>
+          <div><div class="compare-col-label">Traditional</div><div class="compare-col-val cross">✗ None</div></div>
+          <div><div class="compare-col-label">Commercial</div><div class="compare-col-val partial">~ Some</div></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-feat">AI Chatbot (24/7)</div>
+        <div class="compare-card-cols">
+          <div class="biobot-mobile"><div class="compare-col-label">BioBot</div><div class="compare-col-val tick">✓ Cloud AI</div></div>
+          <div><div class="compare-col-label">Traditional</div><div class="compare-col-val cross">✗ None</div></div>
+          <div><div class="compare-col-label">Commercial</div><div class="compare-col-val cross">✗ None</div></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-feat">Auto Mixing Motor</div>
+        <div class="compare-card-cols">
+          <div class="biobot-mobile"><div class="compare-col-label">BioBot</div><div class="compare-col-val tick">✓ 30s+30s</div></div>
+          <div><div class="compare-col-label">Traditional</div><div class="compare-col-val cross">✗ Manual</div></div>
+          <div><div class="compare-col-label">Commercial</div><div class="compare-col-val partial">~ Some</div></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-feat">Multi-Sensor System</div>
+        <div class="compare-card-cols">
+          <div class="biobot-mobile"><div class="compare-col-label">BioBot</div><div class="compare-col-val tick">✓ 3 Sensors</div></div>
+          <div><div class="compare-col-label">Traditional</div><div class="compare-col-val cross">✗ None</div></div>
+          <div><div class="compare-col-label">Commercial</div><div class="compare-col-val partial">~ 1–2</div></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-feat">Cost</div>
+        <div class="compare-card-cols">
+          <div class="biobot-mobile"><div class="compare-col-label">BioBot</div><div class="compare-col-val tick">₹12,500</div></div>
+          <div><div class="compare-col-label">Traditional</div><div class="compare-col-val">₹500–2k</div></div>
+          <div><div class="compare-col-label">Commercial</div><div class="compare-col-val cross">₹25k–80k</div></div>
+        </div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-card-feat">Cycle Duration</div>
+        <div class="compare-card-cols">
+          <div class="biobot-mobile"><div class="compare-col-label">BioBot</div><div class="compare-col-val tick">45–60 Days</div></div>
+          <div><div class="compare-col-label">Traditional</div><div class="compare-col-val">3–6 Months</div></div>
+          <div><div class="compare-col-label">Commercial</div><div class="compare-col-val">7–60 Days</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ── SPECS ──────────────────────────────────────── -->
+<!-- SPECS -->
 <section id="specs">
   <div class="container">
     <p class="eyebrow">Technical</p>
-    <h2 style="margin-top:12px;">Full<br><em class="serif-i">Specifications.</em></h2>
+    <h2 style="margin-top:10px;">Full<br><em class="serif-i">Specifications.</em></h2>
     <div class="specs-grid">
-      <div class="spec-row"><div class="spec-cat">Controller</div><div class="spec-content"><div class="spec-name">ESP32 DevKit V1</div><div class="spec-detail">Dual-core 240MHz · WiFiMulti · 2.4GHz only</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Solar</div><div class="spec-content"><div class="spec-name">5.5V Polycrystalline Panel</div><div class="spec-detail">Charges via TP4056 · 1N5819 reverse-drain diode</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Battery</div><div class="spec-content"><div class="spec-name">Dual 18650 Li-ion</div><div class="spec-detail">3.7V parallel · TP4056 managed charging</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Temp + Humidity</div><div class="spec-content"><div class="spec-name">DHT22 Sensor</div><div class="spec-detail">±0.5°C · 10kΩ pull-up · GPIO4</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Gas Detection</div><div class="spec-content"><div class="spec-name">MQ-135 Sensor</div><div class="spec-detail">NH₃ + CO₂ · 5V heater required · GPIO35</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Moisture</div><div class="spec-content"><div class="spec-name">Capacitive Probe</div><div class="spec-detail">3.3V · 0–100% mapped · GPIO34</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Display</div><div class="spec-content"><div class="spec-name">OLED SSD1306/SH1106</div><div class="spec-detail">128×64px · I2C bus · GPIO21/22 · 6 pages</div></div></div>
-      <div class="spec-row"><div class="spec-cat">RTC</div><div class="spec-content"><div class="spec-name">DS3231 Module</div><div class="spec-detail">±2ppm accuracy · CR2032 backup · IST timezone</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Motor</div><div class="spec-content"><div class="spec-name">DC Gear Motor + L298N</div><div class="spec-detail">30s fwd + 30s bwd · Every 8 hours · GPIO26/27/23</div></div></div>
-      <div class="spec-row"><div class="spec-cat">IoT Platform</div><div class="spec-content"><div class="spec-name">Blynk IoT</div><div class="spec-detail">V0–V9 virtual pins · 5-min push · Push alerts</div></div></div>
-      <div class="spec-row"><div class="spec-cat">AI Platform</div><div class="spec-content"><div class="spec-name">Cloud Python Bot</div><div class="spec-detail">Railway deployment · Telegram · Independent 24/7</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Bin</div><div class="spec-content"><div class="spec-name">15 Litre Capacity</div><div class="spec-detail">HDPE outer drum · Perforated inner basket</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Build Cost</div><div class="spec-content"><div class="spec-name">₹12,500 Complete</div><div class="spec-detail">All components · Full prototype · No subscription</div></div></div>
-      <div class="spec-row"><div class="spec-cat">Cycle</div><div class="spec-content"><div class="spec-name">45–60 Days</div><div class="spec-detail">Mesophilic → Thermophilic → Cooling → Curing</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Controller</div><div><div class="spec-name">ESP32 DevKit V1</div><div class="spec-detail">Dual-core 240MHz · WiFiMulti · 2.4GHz only</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Solar</div><div><div class="spec-name">5.5V Polycrystalline</div><div class="spec-detail">Charges via TP4056 · 1N5819 reverse-drain diode</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Battery</div><div><div class="spec-name">Dual 18650 Li-ion</div><div class="spec-detail">3.7V parallel · TP4056 managed charging</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Temp + Humidity</div><div><div class="spec-name">DHT22 Sensor</div><div class="spec-detail">±0.5°C · 10kΩ pull-up · GPIO4</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Gas Detection</div><div><div class="spec-name">MQ-135 Sensor</div><div class="spec-detail">NH₃ + CO₂ · 5V heater required · GPIO35</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Moisture</div><div><div class="spec-name">Capacitive Probe</div><div class="spec-detail">3.3V · 0–100% mapped · GPIO34</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Display</div><div><div class="spec-name">OLED SSD1306/SH1106</div><div class="spec-detail">128×64px · I2C · GPIO21/22 · 6 pages</div></div></div>
+      <div class="spec-row"><div class="spec-cat">RTC</div><div><div class="spec-name">DS3231 Module</div><div class="spec-detail">±2ppm · CR2032 backup · IST timezone</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Motor</div><div><div class="spec-name">DC Gear + L298N</div><div class="spec-detail">30s fwd + 30s bwd · Every 8 hours · GPIO26/27/23</div></div></div>
+      <div class="spec-row"><div class="spec-cat">IoT</div><div><div class="spec-name">Blynk IoT</div><div class="spec-detail">V0–V9 virtual pins · 5-min push · Push alerts</div></div></div>
+      <div class="spec-row"><div class="spec-cat">AI Bot</div><div><div class="spec-name">Railway Cloud Bot</div><div class="spec-detail">Telegram · Qwen AI · 24/7 independent</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Bin</div><div><div class="spec-name">15 Litre Capacity</div><div class="spec-detail">HDPE drum · Perforated inner basket</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Build Cost</div><div><div class="spec-name">₹12,500 Complete</div><div class="spec-detail">All components · Full prototype · No subscription</div></div></div>
+      <div class="spec-row"><div class="spec-cat">Cycle</div><div><div class="spec-name">45–60 Days</div><div class="spec-detail">Mesophilic → Thermophilic → Cooling → Curing</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ── AI SECTION ─────────────────────────────────── -->
+<!-- AI SECTION -->
 <section id="aichat">
   <div class="container">
     <div class="ai-wrapper">
       <div>
         <p class="eyebrow" style="color:rgba(255,255,255,0.5);">AI Assistant</p>
-        <h2 style="color:#fff;margin-top:12px;">Ask BioBot AI<br><em>Anything.</em></h2>
-        <p style="margin-top:16px;">Our independent AI Telegram bot answers composting questions 24/7 — what to add, fixing smells, reading your sensors, when to harvest.</p>
-        <div style="margin-top:28px;display:flex;flex-direction:column;gap:12px;">
-          <div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.8);font-size:0.88rem;">
-            <span style="color:#4ADE80;font-size:1.1rem;">✓</span> Available when BioBot is offline
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.8);font-size:0.88rem;">
-            <span style="color:#4ADE80;font-size:1.1rem;">✓</span> Knows your compost context and sensor ranges
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.8);font-size:0.88rem;">
-            <span style="color:#4ADE80;font-size:1.1rem;">✓</span> Answers in Tamil and English
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.8);font-size:0.88rem;">
-            <span style="color:#4ADE80;font-size:1.1rem;">✓</span> Powered by latest AI — Qwen 3.6 27B
-          </div>
+        <h2 style="margin-top:10px;">Ask BioBot AI<br><em>Anything.</em></h2>
+        <p style="margin-top:14px;">Our AI Telegram bot answers composting questions 24/7 — what to add, fixing smells, reading sensors, when to harvest.</p>
+        <div class="ai-feature-list">
+          <div class="ai-feat"><span class="ai-feat-tick">✓</span> Available when BioBot is offline</div>
+          <div class="ai-feat"><span class="ai-feat-tick">✓</span> Knows composting science and your sensor ranges</div>
+          <div class="ai-feat"><span class="ai-feat-tick">✓</span> Answers in Tamil and English</div>
+          <div class="ai-feat"><span class="ai-feat-tick">✓</span> Powered by Qwen 3.6 27B via Groq</div>
         </div>
-        <a href="https://t.me/mybiobot_bot" target="_blank" style="display:inline-block;margin-top:28px;background:#fff;color:var(--green);padding:12px 24px;border-radius:8px;font-weight:600;font-size:0.88rem;">
-          Open on Telegram →
-        </a>
+        <a href="https://t.me/mybiobot_bot" target="_blank" class="ai-tg-btn">Open on Telegram →</a>
       </div>
       <div class="ai-chat-ui">
         <div class="ai-header">
@@ -874,12 +982,12 @@ footer{
   </div>
 </section>
 
-<!-- ── TEAM ───────────────────────────────────────── -->
+<!-- TEAM -->
 <section id="team">
   <div class="container">
     <p class="eyebrow">The Team</p>
-    <h2 style="margin-top:12px;">The Minds<br><em class="serif-i">Behind BioBot.</em></h2>
-    <p style="margin-top:16px;max-width:520px;">Student innovators from UCE BIT Campus, Anna University, Tiruchirappalli — building solutions for a greener India.</p>
+    <h2 style="margin-top:10px;">The Minds<br><em class="serif-i">Behind BioBot.</em></h2>
+    <p style="margin-top:14px;max-width:480px;">Student innovators from UCE BIT Campus, Anna University, Tiruchirappalli — building solutions for a greener India.</p>
     <div class="team-grid">
       <div class="team-card">
         <div class="team-avatar">SH</div>
@@ -905,89 +1013,43 @@ footer{
         <div class="team-role" style="color:#E67E22;">Faculty Mentor</div>
         <div class="team-inst">Assistant Professor<br>Anna University, Trichy</div>
       </div>
-      <div class="team-card mentor-card" style="grid-column:span 4;flex-direction:row;display:flex;align-items:center;text-align:left;gap:20px;">
-        <div style="background:#E8F5EE;border-radius:10px;padding:14px 20px;flex-shrink:0;">
-          <div style="font-size:0.75rem;color:var(--text-l);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Department</div>
-          <div style="font-size:0.9rem;color:var(--text);font-weight:500;">Pharmaceutical Technology</div>
-        </div>
-        <div style="background:#E8F5EE;border-radius:10px;padding:14px 20px;flex-shrink:0;">
-          <div style="font-size:0.75rem;color:var(--text-l);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Competition</div>
-          <div style="font-size:0.9rem;color:var(--text);font-weight:500;">Niral Thiruvizha 3.0</div>
-        </div>
-        <div style="background:#E8F5EE;border-radius:10px;padding:14px 20px;flex-shrink:0;">
-          <div style="font-size:0.75rem;color:var(--text-l);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Contact</div>
-          <div style="font-size:0.9rem;color:var(--text);font-weight:500;">biobot.trichy@gmail.com</div>
-        </div>
-        <div style="background:#E8F5EE;border-radius:10px;padding:14px 20px;flex-shrink:0;">
-          <div style="font-size:0.75rem;color:var(--text-l);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Telegram</div>
-          <div style="font-size:0.9rem;color:var(--text);font-weight:500;">@mybiobot_bot</div>
-        </div>
+      <div class="team-info-strip">
+        <div class="ti-cell"><div class="ti-label">Department</div><div class="ti-val">Pharmaceutical Technology</div></div>
+        <div class="ti-cell"><div class="ti-label">Competition</div><div class="ti-val">Niral Thiruvizha 3.0</div></div>
+        <div class="ti-cell"><div class="ti-label">Contact</div><div class="ti-val">biobot.trichy@gmail.com</div></div>
+        <div class="ti-cell"><div class="ti-label">Telegram</div><div class="ti-val">@mybiobot_bot</div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── FAQ ────────────────────────────────────────── -->
+<!-- FAQ -->
 <section id="faq">
   <div class="container">
     <p class="eyebrow">FAQ</p>
-    <h2 style="margin-top:12px;">Frequently Asked<br><em class="serif-i">Questions.</em></h2>
+    <h2 style="margin-top:10px;">Frequently Asked<br><em class="serif-i">Questions.</em></h2>
     <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFAQ(this)">Does BioBot need grid electricity?<span class="faq-icon">+</span></button>
-        <div class="faq-a">No. BioBot runs entirely on solar power. The 5.5V panel charges an 18650 battery via TP4056. A 1N5819 Schottky diode prevents reverse drain at night. All sensors, motor, display, and WiFi run from stored solar energy — zero electricity bill.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFAQ(this)">Which sensors does BioBot use?<span class="faq-icon">+</span></button>
-        <div class="faq-a">BioBot uses three active sensors: DHT22 for temperature and humidity (two readings, one sensor), MQ-135 for ammonia and CO₂ gas detection, and a capacitive moisture probe for pile wetness. The DS3231 RTC tracks the exact calendar day count stored in NVS flash memory so it survives power cuts.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFAQ(this)">How does the Blynk dashboard work?<span class="faq-icon">+</span></button>
-        <div class="faq-a">The ESP32 pushes sensor data to Blynk every 5 minutes via WiFi (safe for the free plan). You see live gauges for temperature, humidity, gas, moisture, day count, and health status. Alerts are push notifications that fire when any sensor goes out of range. You can also trigger the motor manually via the Mix button (V6, Push mode).</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFAQ(this)">How long does composting take?<span class="faq-icon">+</span></button>
-        <div class="faq-a">A full cycle takes 45–60 days through four stages: Mesophilic (Days 1–7) where microbes establish, Thermophilic (Days 8–20) with peak heat 55–65°C and fastest decomposition, Cooling (Days 21–45) as temperature drops, and Curing (Days 46–60) for maturation. BioBot's DS3231 RTC tracks exact days and Blynk notifies you when compost is ready.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFAQ(this)">Can BioBot work without WiFi?<span class="faq-icon">+</span></button>
-        <div class="faq-a">Yes, fully. Without WiFi, BioBot continues reading all sensors every 30 seconds, auto-mixing every 8 hours, counting days accurately via the DS3231 RTC, and displaying live readings across 6 OLED pages. The day count is saved in NVS flash and survives any power cut. Only Blynk monitoring and the Telegram AI bot require internet.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFAQ(this)">What is the AI Telegram bot?<span class="faq-icon">+</span></button>
-        <div class="faq-a">The Telegram bot runs independently on Railway cloud — it is completely separate from the ESP32 hardware. It uses Qwen 3.6 27B AI to answer composting questions: what to add, how to fix smells, when to harvest, interpreting sensor readings. It works 24/7 even when BioBot is powered off.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFAQ(this)">How does WiFi connection work?<span class="faq-icon">+</span></button>
-        <div class="faq-a">BioBot uses WiFiMulti to register both your home WiFi and mobile hotspot. It automatically connects to whichever is available and strongest. If both fail, it runs in offline mode and retries every 30 seconds. Turn on your hotspot before powering BioBot and keep your phone screen on during boot for reliable connection.</div>
-      </div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Does BioBot need grid electricity?<span class="faq-icon">+</span></button><div class="faq-a">No. BioBot runs entirely on solar power. The 5.5V panel charges an 18650 battery via TP4056. A 1N5819 Schottky diode prevents reverse drain at night. All sensors, motor, display, and WiFi run from stored solar energy.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Which sensors does BioBot use?<span class="faq-icon">+</span></button><div class="faq-a">BioBot uses three active sensors: DHT22 for temperature and humidity, MQ-135 for ammonia and CO₂ gas detection, and a capacitive moisture probe for pile wetness. The DS3231 RTC tracks the exact calendar day count stored in NVS flash memory so it survives power cuts.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">How does the Blynk dashboard work?<span class="faq-icon">+</span></button><div class="faq-a">The ESP32 pushes sensor data to Blynk every 5 minutes via WiFi. You see live gauges for temperature, humidity, gas, moisture, day count, and health status. Alerts fire when any sensor goes out of range. You can also trigger the motor manually via the Mix button (V6, Push mode).</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">How long does composting take?<span class="faq-icon">+</span></button><div class="faq-a">A full cycle takes 45–60 days through four stages: Mesophilic (Days 1–7), Thermophilic (Days 8–20) with peak heat 55–65°C, Cooling (Days 21–45), and Curing (Days 46–60). BioBot notifies you when compost is ready to harvest.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">Can BioBot work without WiFi?<span class="faq-icon">+</span></button><div class="faq-a">Yes, fully. Without WiFi, BioBot continues reading all sensors, auto-mixing every 8 hours, counting days via the DS3231 RTC, and displaying live readings on the OLED. Only Blynk monitoring and the Telegram AI bot require internet.</div></div>
+      <div class="faq-item"><button class="faq-q" onclick="toggleFAQ(this)">What is the AI Telegram bot?<span class="faq-icon">+</span></button><div class="faq-a">The Telegram bot runs independently on Railway cloud — completely separate from the ESP32. It uses Qwen 3.6 27B AI to answer composting questions in Tamil and English. It works 24/7 even when BioBot is powered off.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ── CONTACT ─────────────────────────────────────── -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <p class="eyebrow">Contact</p>
-    <h2 style="margin-top:12px;">Get In<br><em class="serif-i">Touch.</em></h2>
+    <h2 style="margin-top:10px;">Get In<br><em class="serif-i">Touch.</em></h2>
     <div class="contact-grid">
       <div class="contact-info">
-        <div class="ci-item">
-          <div class="ci-icon">📍</div>
-          <div><div class="ci-label">Location</div><div class="ci-val">UCE BIT Campus, Anna University<br>Tiruchirappalli 620024, Tamil Nadu</div></div>
-        </div>
-        <div class="ci-item">
-          <div class="ci-icon">📧</div>
-          <div><div class="ci-label">Email</div><div class="ci-val">biobot.trichy@gmail.com</div></div>
-        </div>
-        <div class="ci-item">
-          <div class="ci-icon">🤖</div>
-          <div><div class="ci-label">AI Bot</div><div class="ci-val">@mybiobot_bot on Telegram</div></div>
-        </div>
-        <div class="ci-item">
-          <div class="ci-icon">🌐</div>
-          <div><div class="ci-label">Website</div><div class="ci-val">biobot-website.onrender.com</div></div>
-        </div>
+        <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Location</div><div class="ci-val">UCE BIT Campus, Anna University<br>Tiruchirappalli 620024, Tamil Nadu</div></div></div>
+        <div class="ci-item"><div class="ci-icon">📧</div><div><div class="ci-label">Email</div><div class="ci-val">biobot.trichy@gmail.com</div></div></div>
+        <div class="ci-item"><div class="ci-icon">🤖</div><div><div class="ci-label">AI Bot</div><div class="ci-val">@mybiobot_bot on Telegram</div></div></div>
+        <div class="ci-item"><div class="ci-icon">🌐</div><div><div class="ci-label">Website</div><div class="ci-val">biobot-website.onrender.com</div></div></div>
       </div>
       <div>
         <form class="contact-form" onsubmit="submitForm(event)">
@@ -1004,13 +1066,13 @@ footer{
   </div>
 </section>
 
-<!-- ── FOOTER ──────────────────────────────────────── -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-top">
       <div>
         <div class="footer-logo">BioBot 🌿</div>
-        <div class="footer-tagline">Cook · Eat · Compost · Tamil Nadu, India</div>
+        <div class="footer-tagline">Smart Composting · Tamil Nadu, India</div>
       </div>
       <div class="footer-links">
         <a href="#impact">Impact</a>
@@ -1025,98 +1087,62 @@ footer{
     </div>
     <div class="footer-bottom">
       <div>© 2025 BioBot · UCE BIT Campus, Anna University, Tiruchirappalli · SDG 11 · 12 · 7 · 3 · 13 · 15</div>
-      <div class="last-updated">Last updated: August 2026</div>
+      <div>Last updated: August 2026</div>
     </div>
   </div>
 </footer>
 
 <script>
-// ── FAQ TOGGLE ────────────────────────────────────────────────────────
-function toggleFAQ(btn) {
-  const item = btn.closest('.faq-item');
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-  if (!wasOpen) item.classList.add('open');
+function toggleFAQ(btn){
+  const item=btn.closest('.faq-item');
+  const wasOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
 }
-
-// ── AI CHAT ───────────────────────────────────────────────────────────
-function setQ(q) { document.getElementById('aiQ').value = q; }
-
-async function askAI() {
-  const q = document.getElementById('aiQ').value.trim();
-  if (!q) return;
-  const r = document.getElementById('aiR');
-  r.textContent = 'Thinking...';
-  try {
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer gsk_demo'
-      },
-      body: JSON.stringify({
-        model: 'qwen/qwen3.6-27b',
-        messages: [
-          { role: 'system', content: 'You are BioBot AI, a composting expert. Answer composting questions concisely in 2-3 sentences. BioBot is a solar-powered IoT composter with DHT22, MQ-135, moisture sensor, auto-mixing motor, and Blynk monitoring.' },
-          { role: 'user', content: q }
-        ],
-        max_tokens: 150
+function setQ(q){document.getElementById('aiQ').value=q;}
+async function askAI(){
+  const q=document.getElementById('aiQ').value.trim();
+  if(!q) return;
+  const r=document.getElementById('aiR');
+  r.textContent='Thinking...';
+  try{
+    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer gsk_demo'},
+      body:JSON.stringify({
+        model:'qwen/qwen3.6-27b',
+        messages:[
+          {role:'system',content:'You are BioBot AI, a composting expert. Answer in 2-3 sentences. BioBot is a solar-powered IoT composter with DHT22, MQ-135, moisture sensor, auto-mixing motor, and Blynk monitoring.'},
+          {role:'user',content:q}
+        ],max_tokens:150
       })
     });
-    const data = await res.json();
-    r.textContent = data.choices?.[0]?.message?.content || 'Try asking on our Telegram bot for a full answer! @mybiobot_bot';
-  } catch {
-    r.textContent = 'For full AI answers, open our Telegram bot: @mybiobot_bot — available 24/7 independently.';
+    const data=await res.json();
+    r.textContent=data.choices?.[0]?.message?.content||'For full answers, open our Telegram bot: @mybiobot_bot';
+  }catch{
+    r.textContent='For full AI answers, open our Telegram bot: @mybiobot_bot — available 24/7.';
   }
 }
-
-document.getElementById('aiQ').addEventListener('keydown', e => { if (e.key === 'Enter') askAI(); });
-
-// ── CONTACT FORM ──────────────────────────────────────────────────────
-async function submitForm(e) {
+document.getElementById('aiQ').addEventListener('keydown',e=>{if(e.key==='Enter')askAI();});
+async function submitForm(e){
   e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  const msg = document.getElementById('form-msg');
-  btn.textContent = 'Sending...';
-  btn.disabled = true;
-  try {
-    const res = await fetch('https://formspree.io/f/mlgvbkyq', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        name:    document.getElementById('fname').value,
-        email:   document.getElementById('femail').value,
-        message: document.getElementById('fmsg').value
-      })
+  const btn=e.target.querySelector('.form-submit');
+  const msg=document.getElementById('form-msg');
+  btn.textContent='Sending...';btn.disabled=true;
+  try{
+    const res=await fetch('https://formspree.io/f/mlgvbkyq',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({name:document.getElementById('fname').value,email:document.getElementById('femail').value,message:document.getElementById('fmsg').value})
     });
-    if (res.ok) {
-      msg.textContent = '✓ Message sent! We will reply within 24 hours.';
-      e.target.reset();
-    } else {
-      msg.textContent = 'Something went wrong. Email us at biobot.trichy@gmail.com';
-    }
-  } catch {
-    msg.textContent = 'Network error. Email us at biobot.trichy@gmail.com';
-  }
-  btn.textContent = 'Send Message →';
-  btn.disabled = false;
+    if(res.ok){msg.textContent='✓ Message sent! We will reply within 24 hours.';e.target.reset();}
+    else{msg.textContent='Something went wrong. Email us at biobot.trichy@gmail.com';}
+  }catch{msg.textContent='Network error. Email us at biobot.trichy@gmail.com';}
+  btn.textContent='Send Message →';btn.disabled=false;
 }
-
-// ── NAV SCROLL HIGHLIGHT ──────────────────────────────────────────────
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('section[id]').forEach(sec => {
-    const rect = sec.getBoundingClientRect();
-    if (rect.top <= 80 && rect.bottom >= 80) {
-      document.querySelectorAll('.nav-links a').forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + sec.id
-          ? 'var(--green)' : '';
-      });
-    }
-  });
-});
 </script>
 </body>
 </html>
 HTMLEOF
-echo "Website built: $(wc -l < /home/claude/biobot_website_v2.html) lines"
-cp /home/claude/biobot_website_v2.html /mnt/user-data/outputs/BioBot_Website_v2.html
+echo "Done: $(wc -l < /home/claude/biobot_v3.html) lines"
+cp /home/claude/biobot_v3.html /mnt/user-data/outputs/BioBot_Website_v3.html
